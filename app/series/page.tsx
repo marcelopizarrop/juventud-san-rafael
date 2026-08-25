@@ -11,7 +11,7 @@ export default function SeriesPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
       <p className="font-mono uppercase tracking-[0.3em] text-azul text-xs mb-3">
-        Álbum de figuritas
+        Álbum de Jugadores
       </p>
       <h1 className="font-display text-4xl md:text-5xl text-cancha mb-10">
         Nuestras series
@@ -31,7 +31,7 @@ export default function SeriesPage() {
               {s.nombre}
             </span>
             <span className="font-mono text-sm text-marcador mt-auto">
-              {s.jugadores.length} jugadores/as · DT {s.entrenador}
+              {s.jugadores.length} jugadores · DT {s.entrenador}
             </span>
           </Link>
         ))}

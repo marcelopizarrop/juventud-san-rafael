@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
 import PlayerCard from "@/components/PlayerCard";
 import { getClub, getSeries, getSerie } from "@/lib/datos";
 
@@ -19,16 +17,16 @@ export default function SerieDetallePage({
   params: { serie: string };
 }) {
   const serie = getSerie(params.serie);
-  if (!serie) return notFound();
+  if (!serie) return null;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
-      <Link
+      <a
         href="/series"
         className="font-mono text-xs uppercase tracking-wider text-azul hover:underline"
       >
         ← Todas las series
-      </Link>
+      </a>
 
       <div className="mt-4 mb-10">
         <p className="font-mono uppercase tracking-wider text-marcador text-xs mb-2">
