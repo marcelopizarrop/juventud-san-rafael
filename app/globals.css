@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #F5F3EF;
+  background-image: radial-gradient(circle at 1px 1px, rgba(20,20,20,0.06) 1px, transparent 0);
+  background-size: 16px 16px;
+  color: #141414;
+}
+
+/* Ficha de jugador estilo figurita de álbum */
+.figurita {
+  position: relative;
+  background: #FFFFFF;
+  border: 2px solid #141414;
+  box-shadow: 4px 4px 0 #141414;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.figurita:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #141414;
+}
+
+.figurita::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(20, 20, 20, 0.3);
+  pointer-events: none;
+}
+
+/* Entradita tipo ticket para partidos */
+.ticket {
+  position: relative;
+  background: #FFFFFF;
+  border: 2px solid #141414;
+}
+
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #F5F3EF;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket::before {
+  left: -9px;
+}
+
+.ticket::after {
+  right: -9px;
+}
+
+.marcador-nums {
+  font-variant-numeric: tabular-nums;
+}

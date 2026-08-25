@@ -1,0 +1,24 @@
+{
+  "primera-adulto": {
+    "liga": "Primera A Comunal - San Bernardo",
+    "actualizado": "2026-08-17",
+    "equipos": [
+      { "pos": 1, "equipo": "Juventud San Rafael", "pj": 14, "pg": 10, "pe": 3, "pp": 1, "gf": 32, "gc": 12, "pts": 33 },
+      { "pos": 2, "equipo": "Deportivo Nos", "pj": 14, "pg": 9, "pe": 3, "pp": 2, "gf": 27, "gc": 15, "pts": 30 },
+      { "pos": 3, "equipo": "Unión Lo Blanco", "pj": 14, "pg": 8, "pe": 4, "pp": 2, "gf": 24, "gc": 16, "pts": 28 },
+      { "pos": 4, "equipo": "Ferroviario Central", "pj": 14, "pg": 7, "pe": 3, "pp": 4, "gf": 22, "gc": 18, "pts": 24 },
+      { "pos": 5, "equipo": "Independiente Nos", "pj": 14, "pg": 5, "pe": 5, "pp": 4, "gf": 19, "gc": 20, "pts": 20 },
+      { "pos": 6, "equipo": "Provincial San Bernardo", "pj": 14, "pg": 3, "pe": 2, "pp": 9, "gf": 14, "gc": 29, "pts": 11 }
+    ]
+  },
+  "femenino": {
+    "liga": "Liga Femenina Comunal",
+    "actualizado": "2026-08-17",
+    "equipos": [
+      { "pos": 1, "equipo": "Juventud San Rafael", "pj": 10, "pg": 8, "pe": 1, "pp": 1, "gf": 26, "gc": 9, "pts": 25 },
+      { "pos": 2, "equipo": "Atlético Nos Femenino", "pj": 10, "pg": 6, "pe": 2, "pp": 2, "gf": 19, "gc": 11, "pts": 20 },
+      { "pos": 3, "equipo": "Deportivo Lo Herrera", "pj": 10, "pg": 4, "pe": 3, "pp": 3, "gf": 15, "gc": 14, "pts": 15 },
+      { "pos": 4, "equipo": "Unión San Bernardo Fem.", "pj": 10, "pg": 1, "pe": 2, "pp": 7, "gf": 8, "gc": 24, "pts": 5 }
+    ]
+  }
+}
