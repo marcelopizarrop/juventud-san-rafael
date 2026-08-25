@@ -20,7 +20,7 @@ function iniciales(nombre: string) {
 export default function PlayerCard({ jugador }: { jugador: Player }) {
   return (
     <div className="figurita p-3 flex flex-col items-center text-center">
-      <div className="w-full aspect-square bg-cancha flex items-center justify-center relative overflow-hidden mb-2">
+      <div className="w-full aspect-square bg-cancha rounded-2xl flex items-center justify-center relative overflow-hidden mb-2">
         {jugador.foto ? (
           <Image
             src={jugador.foto}
@@ -33,7 +33,7 @@ export default function PlayerCard({ jugador }: { jugador: Player }) {
             {iniciales(jugador.nombre)}
           </span>
         )}
-        <span className="absolute top-1 left-1 bg-dorado text-cancha-oscuro font-mono text-xs font-bold w-6 h-6 flex items-center justify-center">
+        <span className="absolute top-1.5 left-1.5 bg-dorado text-cancha-oscuro font-mono text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
           {jugador.numero}
         </span>
       </div>

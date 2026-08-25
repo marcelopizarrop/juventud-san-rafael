@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PlayerCard from "@/components/PlayerCard";
-import club from "@/data/club.json";
-import series from "@/data/series.json";
+import { getClub, getSeries, getSerie } from "@/lib/datos";
 
 export function generateStaticParams() {
-  return series.map((s) => ({ serie: s.id }));
+  return getSeries().map((s) => ({ serie: s.id }));
 }
 
 export function generateMetadata({ params }: { params: { serie: string } }) {
-  const s = series.find((s) => s.id === params.serie);
+  const s = getSerie(params.serie);
+  const club = getClub();
   return { title: s ? `${s.nombre} | ${club.nombre}` : club.nombre };
 }
 
@@ -18,14 +18,14 @@ export default function SerieDetallePage({
 }: {
   params: { serie: string };
 }) {
-  const serie = series.find((s) => s.id === params.serie);
+  const serie = getSerie(params.serie);
   if (!serie) return notFound();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
       <Link
         href="/series"
-        className="font-mono text-xs uppercase tracking-wider text-granate hover:underline"
+        className="font-mono text-xs uppercase tracking-wider text-azul hover:underline"
       >
         ← Todas las series
       </Link>

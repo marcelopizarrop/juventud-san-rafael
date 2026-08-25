@@ -18,7 +18,7 @@ export default function StandingsTable({
   destacar?: string;
 }) {
   return (
-    <div className="overflow-x-auto figurita">
+    <div className="overflow-x-auto figurita rounded-card">
       <table className="w-full font-mono text-sm min-w-[560px]">
         <thead>
           <tr className="bg-cancha text-parchment-alto uppercase text-xs">

@@ -2,17 +2,28 @@
 
 import { useState } from "react";
 import StandingsTable from "@/components/StandingsTable";
-import tablas from "@/data/tabla.json";
+import type { Tabla } from "@/lib/datos";
 
-const opciones = Object.keys(tablas) as (keyof typeof tablas)[];
-
-const etiquetas: Record<string, string> = {
-  "primera-adulto": "Primera Adulto",
-  femenino: "Femenino Adulto"
-};
-
-export default function TablaSelector() {
+export default function TablaSelector({
+  tablas,
+  etiquetas,
+  nombreClub
+}: {
+  tablas: Record<string, Tabla>;
+  etiquetas: Record<string, string>;
+  nombreClub: string;
+}) {
+  const opciones = Object.keys(tablas);
   const [activa, setActiva] = useState(opciones[0]);
+
+  if (opciones.length === 0) {
+    return (
+      <p className="font-mono text-sm text-marcador">
+        Todavía no hay tablas de posiciones cargadas.
+      </p>
+    );
+  }
+
   const tabla = tablas[activa];
 
   return (
@@ -22,7 +33,7 @@ export default function TablaSelector() {
           <button
             key={op}
             onClick={() => setActiva(op)}
-            className={`px-4 py-2 border-2 border-cancha transition-colors ${
+            className={`px-4 py-2 rounded-full border-2 border-cancha transition-colors ${
               activa === op
                 ? "bg-cancha text-parchment-alto"
                 : "bg-transparent text-cancha hover:bg-cancha/10"
@@ -38,11 +49,11 @@ export default function TablaSelector() {
         Actualizado el {tabla.actualizado}
       </p>
 
-      <StandingsTable equipos={tabla.equipos} />
+      <StandingsTable equipos={tabla.equipos} destacar={nombreClub} />
 
       <p className="font-mono text-xs text-marcador mt-6">
-        Las categorías formativas (Sub-9 a Sub-17) participan en formato de
-        encuentros y no llevan tabla de posiciones oficial.
+        Las categorías formativas participan en formato de encuentros y no
+        llevan tabla de posiciones oficial.
       </p>
     </div>
   );
