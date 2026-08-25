@@ -1,22 +1,22 @@
 {
-  "nombre": "Juventud San Rafael",
-  "apodo": "La Juve",
+  "nombre": "Club DeportivoJuventud San Rafael",
+  "apodo": "J con U, La Juve",
   "fundacion": 1962,
-  "comuna": "San Bernardo",
+  "comuna": "La Pintana",
   "region": "Metropolitana",
   "colores": ["Rojo", "Blanco"],
-  "estadio": "Complejo Deportivo Cordillera",
+  "estadio": "Estadio Municipal de La Pintana",
   "resumen": "Fundado por un grupo de vecinos de San Rafael, el club nació como espacio de encuentro y hoy reúne a más de 300 jugadoras y jugadores en sus distintas series, desde Escuela de Fútbol hasta el plantel adulto.",
   "hitos": [
     {
       "anio": "1962",
       "titulo": "Fundación",
-      "texto": "Un grupo de vecinos del sector de la Estación funda el club en torno a una cancha de tierra, con el objetivo de darle un espacio de encuentro a la comunidad ferroviaria."
+      "texto": "Un grupo de vecinos funda el club en torno a una cancha de tierra, con el objetivo de darle un espacio de encuentro a la comunidad ferroviaria."
     },
     {
       "anio": "1978",
       "titulo": "Primer título comunal",
-      "texto": "El primer equipo se corona campeón de la liga vecinal de San Bernardo, el primer trofeo que se exhibe en la sede social."
+      "texto": "El primer equipo se corona campeón de la liga vecinal, el primer trofeo que se exhibe en la sede social."
     },
     {
       "anio": "1991",
@@ -27,11 +27,6 @@
       "anio": "2005",
       "titulo": "Nace la rama femenina",
       "texto": "Se forma oficialmente la primera serie femenina, ampliando el proyecto deportivo a niñas y jóvenes de la comuna."
-    },
-    {
-      "anio": "2016",
-      "titulo": "Nuevo complejo deportivo",
-      "texto": "Se inaugura el Complejo Deportivo Cordillera, con cancha de pasto sintético y camarines, sede actual de todas las series del club."
     },
     {
       "anio": "2023",
