@@ -1,10 +1,13 @@
 import MatchCard from "@/components/MatchCard";
-import club from "@/data/club.json";
-import calendario from "@/data/calendario.json";
+import { getClub, getCalendario } from "@/lib/datos";
 
-export const metadata = { title: `Calendario | ${club.nombre}` };
+export function generateMetadata() {
+  const club = getClub();
+  return { title: `Calendario | ${club.nombre}` };
+}
 
 export default function CalendarioPage() {
+  const calendario = getCalendario();
   const proximos = calendario
     .filter((p) => !p.resultado)
     .sort((a, b) => a.fecha.localeCompare(b.fecha));
@@ -14,7 +17,7 @@ export default function CalendarioPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-14">
-      <p className="font-mono uppercase tracking-[0.3em] text-granate text-xs mb-3">
+      <p className="font-mono uppercase tracking-[0.3em] text-azul text-xs mb-3">
         Fixture
       </p>
       <h1 className="font-display text-4xl md:text-5xl text-cancha mb-10">
@@ -28,7 +31,7 @@ export default function CalendarioPage() {
         {proximos.length > 0 ? (
           <div className="grid md:grid-cols-2 gap-6">
             {proximos.map((p, i) => (
-              <MatchCard key={i} partido={p} />
+              <MatchCard key={i} partido={p} nombreClub={club.nombre} />
             ))}
           </div>
         ) : (
@@ -44,7 +47,7 @@ export default function CalendarioPage() {
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {jugados.map((p, i) => (
-            <MatchCard key={i} partido={p} />
+            <MatchCard key={i} partido={p} nombreClub={club.nombre} />
           ))}
         </div>
       </section>

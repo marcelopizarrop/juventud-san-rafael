@@ -1,11 +1,15 @@
-import club from "@/data/club.json";
+import { getClub } from "@/lib/datos";
 
-export const metadata = { title: `Historia | ${club.nombre}` };
+export function generateMetadata() {
+  const club = getClub();
+  return { title: `Historia | ${club.nombre}` };
+}
 
 export default function HistoriaPage() {
+  const club = getClub();
   return (
     <div className="max-w-4xl mx-auto px-4 py-14">
-      <p className="font-mono uppercase tracking-[0.3em] text-granate text-xs mb-3">
+      <p className="font-mono uppercase tracking-[0.3em] text-azul text-xs mb-3">
         Nuestra historia
       </p>
       <h1 className="font-display text-4xl md:text-5xl text-cancha mb-6">
@@ -19,7 +23,7 @@ export default function HistoriaPage() {
             <span className="absolute -left-[42px] top-0 bg-cancha text-dorado font-mono text-xs font-bold w-8 h-8 rounded-full flex items-center justify-center border-2 border-dorado">
               •
             </span>
-            <p className="font-display text-2xl text-granate leading-none mb-1">
+            <p className="font-display text-2xl text-azul leading-none mb-1">
               {hito.anio}
             </p>
             <h2 className="font-display text-lg text-cancha mb-1">

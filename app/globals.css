@@ -4,38 +4,33 @@
 
 body {
   background-color: #F5F3EF;
-  background-image: radial-gradient(circle at 1px 1px, rgba(20,20,20,0.06) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(20,20,20,0.05) 1px, transparent 0);
   background-size: 16px 16px;
-  color: #141414;
+  color: #1A1A1A;
 }
 
-/* Ficha de jugador estilo figurita de álbum */
+/* Ficha de jugador / tarjetas: look moderno, redondeado, sombra suave */
 .figurita {
   position: relative;
   background: #FFFFFF;
-  border: 2px solid #141414;
-  box-shadow: 4px 4px 0 #141414;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  box-shadow: 0 6px 18px rgba(20, 20, 20, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .figurita:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #141414;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(20, 20, 20, 0.14);
 }
 
-.figurita::before {
-  content: "";
-  position: absolute;
-  inset: 6px;
-  border: 1px dashed rgba(20, 20, 20, 0.3);
-  pointer-events: none;
-}
-
-/* Entradita tipo ticket para partidos */
+/* Entradita tipo ticket para partidos, ahora redondeada */
 .ticket {
   position: relative;
   background: #FFFFFF;
-  border: 2px solid #141414;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  box-shadow: 0 6px 18px rgba(20, 20, 20, 0.06);
 }
 
 .ticket::before,
@@ -60,4 +55,17 @@ body {
 
 .marcador-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Carrusel de la portada */
+.carrusel-slide {
+  transition: opacity 0.6s ease;
+}
+
+.sin-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.sin-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

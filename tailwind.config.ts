@@ -12,11 +12,15 @@ const config: Config = {
         "cancha-oscuro": "#8C0E16",
         dorado: "#FFFFFF",       // blanco del escudo, usado como acento/trim
         "dorado-claro": "#F2F2F2",
-        granate: "#141414",      // negro, acento de resultados y contraste
+        azul: "#0B2A4A",         // azul oscuro, acento de resultados y contraste
+        "azul-claro": "#123B66",
         parchment: "#F5F3EF",    // fondo neutro tipo papel de programa
         "parchment-alto": "#FFFFFF",
-        tinta: "#141414",
-        marcador: "#4A4A4A"
+        tinta: "#1A1A1A",
+        marcador: "#5A5A5A"
+      },
+      borderRadius: {
+        card: "1.25rem"
       },
       fontFamily: {
         display: ["var(--font-anton)", "sans-serif"],

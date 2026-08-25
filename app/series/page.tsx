@@ -1,13 +1,16 @@
 import Link from "next/link";
-import club from "@/data/club.json";
-import series from "@/data/series.json";
+import { getClub, getSeries } from "@/lib/datos";
 
-export const metadata = { title: `Series | ${club.nombre}` };
+export function generateMetadata() {
+  const club = getClub();
+  return { title: `Series | ${club.nombre}` };
+}
 
 export default function SeriesPage() {
+  const series = getSeries();
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
-      <p className="font-mono uppercase tracking-[0.3em] text-granate text-xs mb-3">
+      <p className="font-mono uppercase tracking-[0.3em] text-azul text-xs mb-3">
         Álbum de figuritas
       </p>
       <h1 className="font-display text-4xl md:text-5xl text-cancha mb-10">

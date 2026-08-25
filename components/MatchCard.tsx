@@ -17,7 +17,13 @@ function formatFecha(fecha: string) {
   });
 }
 
-export default function MatchCard({ partido }: { partido: Partido }) {
+export default function MatchCard({
+  partido,
+  nombreClub = "Juventud San Rafael"
+}: {
+  partido: Partido;
+  nombreClub?: string;
+}) {
   const jugado = Boolean(partido.resultado);
   return (
     <div className="ticket px-5 py-4 flex items-center justify-between gap-4">
@@ -26,13 +32,13 @@ export default function MatchCard({ partido }: { partido: Partido }) {
           {partido.serie} · {partido.condicion}
         </p>
         <p className="font-display text-lg leading-tight mt-1">
-          {jugado ? "Juventud San Rafael vs" : "vs"} {partido.rival}
+          {jugado ? `${nombreClub} vs` : "vs"} {partido.rival}
         </p>
         <p className="font-mono text-xs text-marcador mt-1">{partido.cancha}</p>
       </div>
       <div className="text-right shrink-0">
         {jugado ? (
-          <p className="font-display text-2xl marcador-nums text-granate">
+          <p className="font-display text-2xl marcador-nums text-azul">
             {partido.resultado}
           </p>
         ) : (
