@@ -47,7 +47,7 @@ export default function CalendarioPage() {
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {jugados.map((p, i) => (
-            <MatchCard key={i} partido={p} nombreClub={club.nombre} />
+            <MatchCard key={i} partido={p} nombreClub={c.nombre} />
           ))}
         </div>
       </section>
