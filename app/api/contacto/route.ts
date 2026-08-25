@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const { error } = await resend.emails.send({
       from: "Sitio web del club <onboarding@resend.dev>",
       to: destino,
-      replyTo: email,
+      reply_to: email,
       subject: asunto ? `[Sitio web] ${asunto}` : `Nuevo mensaje de ${nombre}`,
       text: `Nombre: ${nombre}\nCorreo: ${email}\nTeléfono: ${telefono || "No indicado"}\n\nMensaje:\n${mensaje}`
     });
