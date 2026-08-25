@@ -7,6 +7,7 @@ export function generateMetadata() {
 }
 
 export default function TablaPage() {
+  const club = getClub();
   const tablas = getTablas();
   const series = getSeries();
   const etiquetas: Record<string, string> = {};
