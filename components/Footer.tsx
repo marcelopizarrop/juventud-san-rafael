@@ -18,8 +18,8 @@ export default function Footer() {
         </div>
         <div>
           <p className="text-dorado mb-2 uppercase tracking-wider text-xs">Contacto</p>
-          <p className="opacity-80">contacto@tudominio.cl</p>
-          <p className="opacity-80">+56 9 0000 0000</p>
+          <p className="opacity-80">informaciones.jcu@gmail.com</p>
+          <p className="opacity-80">+56 9 5017 2752</p>
           <Link href="/contacto" className="inline-block mt-2 underline hover:text-dorado">
             Escríbenos →
           </Link>
