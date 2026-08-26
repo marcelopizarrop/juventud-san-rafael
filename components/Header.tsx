@@ -33,7 +33,7 @@ export default function Header({ nombreClub }: { nombreClub: string }) {
         </Link>
 
         {/* Navegación de escritorio */}
-        <nav className="hidden md:flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs md:text-sm uppercase tracking-wider">
+        <nav className="hidden md:flex flex-wrap gap-x-5 gap-y-1 font-mono text-[11px] md:text-xs uppercase tracking-wider">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -72,7 +72,7 @@ export default function Header({ nombreClub }: { nombreClub: string }) {
 
       {/* Navegación móvil desplegable */}
       {abierto && (
-        <nav className="md:hidden bg-cancha-oscuro border-t border-dorado/40 px-4 py-3 flex flex-col gap-1 font-mono text-sm uppercase tracking-wider">
+        <nav className="md:hidden bg-cancha-oscuro border-t border-dorado/40 px-4 py-3 flex flex-col gap-1 font-mono text-xs uppercase tracking-wider">
           {links.map((link) => (
             <Link
               key={link.href}
