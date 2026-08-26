@@ -20,13 +20,13 @@ export async function POST(req: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const destino = process.env.CONTACTO_EMAIL;
+  const destino = process.env.CONTACTO_EMAIL || "informaciones.jcu@gmail.com";
 
-  if (!apiKey || !destino) {
+  if (!apiKey) {
     return NextResponse.json(
       {
         error:
-          "El formulario todavía no está configurado. Falta agregar RESEND_API_KEY y CONTACTO_EMAIL en las variables de entorno de Vercel."
+          "El formulario todavía no está configurado. Falta agregar RESEND_API_KEY en las variables de entorno de Vercel."
       },
       { status: 500 }
     );
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const { error } = await resend.emails.send({
       from: "Sitio web del club <onboarding@resend.dev>",
       to: destino,
-      reply_to: email,
+      replyTo: email,
       subject: asunto ? `[Sitio web] ${asunto}` : `Nuevo mensaje de ${nombre}`,
       text: `Nombre: ${nombre}\nCorreo: ${email}\nTeléfono: ${telefono || "No indicado"}\n\nMensaje:\n${mensaje}`
     });

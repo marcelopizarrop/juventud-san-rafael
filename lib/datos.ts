@@ -29,6 +29,7 @@ function numero(valor: unknown): number {
 
 // ---------- club.xlsx ----------
 export type Hito = { anio: string; titulo: string; texto: string };
+export type RedesSociales = { instagram: string; facebook: string; whatsapp: string };
 export type Club = {
   nombre: string;
   apodo: string;
@@ -39,6 +40,7 @@ export type Club = {
   estadio: string;
   resumen: string;
   hitos: Hito[];
+  redes: RedesSociales;
 };
 
 export function getClub(): Club {
@@ -59,8 +61,31 @@ export function getClub(): Club {
     resumen: texto(c.resumen),
     hitos: hitos
       .map((h) => ({ anio: texto(h.anio), titulo: texto(h.titulo), texto: texto(h.texto) }))
-      .sort((a, b) => a.anio.localeCompare(b.anio))
+      .sort((a, b) => a.anio.localeCompare(b.anio)),
+    redes: {
+      instagram: texto(c.instagram),
+      facebook: texto(c.facebook),
+      whatsapp: texto(c.whatsapp)
+    }
   };
+}
+
+// ---------- directiva.xlsx ----------
+export type MiembroDirectiva = { cargo: string; nombre: string; foto: string };
+export type Mascota = { nombre: string; descripcion: string; imagen: string };
+
+export function getDirectiva(): MiembroDirectiva[] {
+  const filas = leerHoja<Record<string, unknown>>("directiva.xlsx", "Directiva");
+  return filas
+    .filter((f) => texto(f.nombre))
+    .map((f) => ({ cargo: texto(f.cargo), nombre: texto(f.nombre), foto: texto(f.foto) }));
+}
+
+export function getMascota(): Mascota | null {
+  const filas = leerHoja<Record<string, unknown>>("directiva.xlsx", "Mascota");
+  const m = filas[0];
+  if (!m || !texto(m.nombre)) return null;
+  return { nombre: texto(m.nombre), descripcion: texto(m.descripcion), imagen: texto(m.imagen) };
 }
 
 // ---------- series.xlsx ----------
