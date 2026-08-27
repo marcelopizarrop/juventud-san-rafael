@@ -35,19 +35,21 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
-      from: "Sitio web del club <onboarding@resend.dev>",
+      from: "Juventud San Rafael <contacto@jcu.cl>",
       to: destino,
-      reply_to: email,
+      replyTo: email,
       subject: asunto ? `[Sitio web] ${asunto}` : `Nuevo mensaje de ${nombre}`,
       text: `Nombre: ${nombre}\nCorreo: ${email}\nTeléfono: ${telefono || "No indicado"}\n\nMensaje:\n${mensaje}`
     });
 
     if (error) {
+      console.error("Resend error:", error);
       return NextResponse.json({ error: "No se pudo enviar el mensaje." }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (e) {
+    console.error("Error inesperado en /api/contacto:", e);
     return NextResponse.json({ error: "No se pudo enviar el mensaje." }, { status: 500 });
   }
 }
