@@ -25,9 +25,6 @@ export default function Home() {
       <section className="bg-cancha text-parchment-alto relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1fr_auto] gap-10 items-center">
           <div>
-            <p className="font-mono uppercase tracking-[0.3em] text-dorado text-xs mb-4">
-              Desde {club.fundacion} · {club.comuna}
-            </p>
             <h1 className="font-display text-4xl md:text-6xl leading-[0.95] mb-6">
               {club.nombre}
             </h1>
