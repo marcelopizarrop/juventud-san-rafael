@@ -107,7 +107,10 @@ web de GitHub** (son archivos binarios, no de texto). El flujo es:
 
 - **`data/series.xlsx`**
   - Hoja **Series**: una fila por categoría (id, nombre, categoría,
-    entrenador). El `id` debe ser corto y sin espacios (ej. `sub-15`).
+    entrenador, `fotoEquipo`). El `id` debe ser corto y sin espacios (ej.
+    `sub-15`). La columna `fotoEquipo` es opcional: pon ahí la ruta de una
+    foto del plantel completo (ej. `/jugadores/foto-equipo-sub-15.jpg`) y
+    aparecerá como foto de portada en la página de esa serie.
   - Hoja **Jugadores**: una fila por jugador/a, con la columna `serieId`
     indicando a qué serie pertenece (debe coincidir exactamente con el
     `id` de la hoja Series). Columnas: `serieId`, `numero`, `nombre`,
@@ -127,28 +130,44 @@ web de GitHub** (son archivos binarios, no de texto). El flujo es:
   `lugar`, `descripcion`, `imagen` (opcional, ver abajo).
 
 - **`data/galeria.xlsx`** — Hoja **Galeria**: fotos del carrusel de la
-  portada. Columnas: `orden` (número, define el orden de aparición),
-  `imagen`, `leyenda` (texto opcional que aparece sobre la foto).
+  portada y de la página Galería. Columnas: `orden` (número, define el
+  orden de aparición), `imagen`, `leyenda` (texto opcional que aparece
+  sobre la foto), `serie` (opcional). Si dejas `serie` vacío, la foto
+  aparece en "Fotos del club" y en el carrusel de la portada; si escribes
+  el `id` de una serie (el mismo de `series.xlsx`), la foto aparece en la
+  sección "Fotos por serie" de esa serie dentro de la página Galería.
 
-### Subir fotos (jugadores, novedades y carrusel)
+- **`data/directiva.xlsx`**
+  - Hoja **Directiva**: una fila por integrante (cargo, nombre, `foto`
+    opcional).
+  - Hoja **Mascota**: una sola fila (nombre, descripción, `imagen`
+    opcional).
 
-El proceso es el mismo en los tres casos:
+### Subir fotos (jugadores, directiva, mascota, novedades y galería)
+
+El proceso es el mismo en todos los casos:
 
 1. En GitHub, entra a la carpeta correspondiente y usa **Add file →
    Upload files**:
-   - `public/jugadores/` para fotos de jugadores
+   - `public/jugadores/` para fotos de jugadores y para la foto del
+     equipo completo de una serie (`fotoEquipo`)
+   - `public/directiva/` para fotos de los integrantes de la directiva
+   - `public/mascota/` para la foto de la mascota
    - `public/novedades/` para la foto de una novedad
-   - `public/galeria/` para las fotos del carrusel de la portada
-2. Sube la imagen (`.jpg`, `.jpeg`, `.png` o `.webp`; para el carrusel
-   funciona mejor una foto horizontal/panorámica).
-3. En el Excel correspondiente, en la columna `foto` / `imagen`, escribe
-   la ruta con `/` al inicio, por ejemplo:
-   `/jugadores/ignacio-rojas.jpg`, `/novedades/aniversario-64.jpg`,
-   `/galeria/hinchada.jpg`.
+   - `public/galeria/` para las fotos del carrusel/galería (generales o
+     por serie)
+2. Sube la imagen (`.jpg`, `.jpeg`, `.png` o `.webp`; para el carrusel y
+   las fotos de equipo funciona mejor una foto horizontal/panorámica).
+3. En el Excel correspondiente, en la columna `foto` / `imagen` /
+   `fotoEquipo`, escribe la ruta con `/` al inicio, por ejemplo:
+   `/jugadores/ignacio-rojas.jpg`, `/jugadores/foto-equipo-sub-15.jpg`,
+   `/directiva/feliciciano-barra.jpg`, `/mascota/chocolo.jpg`,
+   `/novedades/aniversario-64.jpg`, `/galeria/hinchada.jpg`.
 4. Sube el Excel actualizado como se explicó en la sección anterior.
 
-Mientras el campo de foto esté vacío, la ficha de jugador muestra
-automáticamente sus iniciales, así el sitio se ve bien aunque falten fotos.
+Mientras el campo de foto esté vacío, la ficha de jugador o de directiva
+muestra automáticamente sus iniciales, así el sitio se ve bien aunque
+falten fotos.
 
 ---
 
@@ -201,14 +220,16 @@ Abre [http://localhost:3000](http://localhost:3000).
 ## 8. Estructura del proyecto
 
 ```
-app/                  → páginas del sitio (Inicio, Historia, Series, Tabla, Calendario, Novedades, Contacto)
+app/                  → páginas del sitio (Inicio, Historia, Jugadores, Series, Tabla, Calendario, Novedades, Galería, Contacto)
 app/api/contacto/     → endpoint que envía el correo del formulario de contacto
 components/           → piezas reutilizables (encabezado, carrusel, ficha de jugador, tarjeta de partido, etc.)
 data/                 → TODO el contenido editable, en archivos Excel (.xlsx)
 lib/datos.ts          → lee los archivos Excel y se los entrega a cada página
-public/jugadores/     → fotos de jugadores
+public/jugadores/     → fotos de jugadores y fotos de equipo completo por serie
+public/directiva/     → fotos de los integrantes de la directiva
+public/mascota/       → foto de la mascota
 public/novedades/     → fotos de novedades
-public/galeria/       → fotos del carrusel de la portada
+public/galeria/       → fotos del carrusel/galería (generales o por serie)
 public/escudo/        → logo del club
 ```
 

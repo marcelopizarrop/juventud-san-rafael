@@ -33,7 +33,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-wider">
               <Link
-                href="/directiva"
+                href="/jugadores"
                 className="bg-dorado text-cancha-oscuro px-4 py-2 rounded-full font-bold hover:bg-dorado-claro transition-colors"
               >
                 Ver planteles
@@ -115,7 +115,7 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/directiva"
+            href="/jugadores"
             className="inline-block bg-cancha text-parchment-alto px-5 py-3 rounded-full font-mono text-sm uppercase tracking-wider hover:bg-cancha-oscuro transition-colors"
           >
             Ver el álbum completo de jugadores →

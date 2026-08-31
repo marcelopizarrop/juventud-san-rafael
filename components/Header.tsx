@@ -7,7 +7,7 @@ import Escudo from "./Escudo";
 const links = [
   { href: "/", label: "Inicio" },
   { href: "/historia", label: "Historia" },
-  { href: "/directiva", label: "Directiva y Series" },
+  { href: "/jugadores", label: "Jugadores" },
   { href: "/galeria", label: "Galería" },
   { href: "/tabla", label: "Tabla" },
   { href: "/calendario", label: "Calendario" },
