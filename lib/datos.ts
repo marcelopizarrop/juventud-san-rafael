@@ -100,6 +100,7 @@ export type Serie = {
   nombre: string;
   categoria: string;
   entrenador: string;
+  fotoEquipo: string;
   jugadores: Jugador[];
 };
 
@@ -113,6 +114,7 @@ export function getSeries(): Serie[] {
       nombre: texto(s.nombre),
       categoria: texto(s.categoria),
       entrenador: texto(s.entrenador),
+      fotoEquipo: texto(s.fotoEquipo),
       jugadores: jugadores
         .filter((j) => texto(j.serieId) === id)
         .map((j) => ({
@@ -217,12 +219,25 @@ export function getNovedades(): Novedad[] {
 }
 
 // ---------- galeria.xlsx ----------
-export type FotoGaleria = { orden: number; imagen: string; leyenda: string };
+export type FotoGaleria = { orden: number; imagen: string; leyenda: string; serie: string };
 
 export function getGaleria(): FotoGaleria[] {
   const filas = leerHoja<Record<string, unknown>>("galeria.xlsx", "Galeria");
   return filas
     .filter((f) => texto(f.imagen))
-    .map((f) => ({ orden: numero(f.orden), imagen: texto(f.imagen), leyenda: texto(f.leyenda) }))
+    .map((f) => ({
+      orden: numero(f.orden),
+      imagen: texto(f.imagen),
+      leyenda: texto(f.leyenda),
+      serie: texto(f.serie)
+    }))
     .sort((a, b) => a.orden - b.orden);
+}
+
+export function getGaleriaGeneral(): FotoGaleria[] {
+  return getGaleria().filter((f) => !f.serie);
+}
+
+export function getGaleriaPorSerie(serieId: string): FotoGaleria[] {
+  return getGaleria().filter((f) => f.serie === serieId);
 }

@@ -2,13 +2,13 @@ import Link from "next/link";
 import Escudo from "@/components/Escudo";
 import MatchCard from "@/components/MatchCard";
 import Carrusel from "@/components/Carrusel";
-import { getClub, getCalendario, getNovedades, getGaleria } from "@/lib/datos";
+import { getClub, getCalendario, getNovedades, getGaleriaGeneral } from "@/lib/datos";
 
 export default function Home() {
   const club = getClub();
   const calendario = getCalendario();
   const novedades = getNovedades();
-  const galeria = getGaleria();
+  const galeria = getGaleriaGeneral();
 
   const proximos = calendario
     .filter((p) => !p.resultado)
@@ -23,30 +23,30 @@ export default function Home() {
     <div>
       {/* HERO */}
       <section className="bg-cancha text-parchment-alto relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1fr_auto] gap-10 items-center">
+        <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 grid md:grid-cols-[1fr_auto] gap-4 md:gap-6 items-center">
           <div>
-            <h1 className="font-display text-4xl md:text-6xl leading-[0.95] mb-6">
+            <h1 className="font-display text-xl sm:text-2xl md:text-3xl leading-tight mb-2">
               {club.nombre}
             </h1>
-            <p className="max-w-xl text-parchment-alto/85 mb-8">
+            <p className="max-w-xl text-parchment-alto/85 mb-3 text-xs sm:text-sm">
               {club.resumen}
             </p>
-            <div className="flex flex-wrap gap-4 font-mono text-sm uppercase tracking-wider">
+            <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-wider">
               <Link
-                href="/series"
-                className="bg-dorado text-cancha-oscuro px-5 py-3 rounded-full font-bold hover:bg-dorado-claro transition-colors"
+                href="/directiva"
+                className="bg-dorado text-cancha-oscuro px-4 py-2 rounded-full font-bold hover:bg-dorado-claro transition-colors"
               >
                 Ver planteles
               </Link>
               <Link
                 href="/historia"
-                className="border border-dorado px-5 py-3 rounded-full hover:bg-cancha-oscuro transition-colors"
+                className="border border-dorado px-4 py-2 rounded-full hover:bg-cancha-oscuro transition-colors"
               >
                 Nuestra historia
               </Link>
             </div>
           </div>
-          <Escudo className="w-32 h-40 md:w-44 md:h-52 justify-self-center" />
+          <Escudo className="w-16 h-20 md:w-20 md:h-24 justify-self-center" />
         </div>
       </section>
 
@@ -113,12 +113,20 @@ export default function Home() {
         <p className="font-mono text-sm text-marcador mb-6">
           Desde la Escuela de Fútbol hasta el plantel Senior.
         </p>
-        <Link
-          href="/series"
-          className="inline-block bg-cancha text-parchment-alto px-5 py-3 rounded-full font-mono text-sm uppercase tracking-wider hover:bg-cancha-oscuro transition-colors"
-        >
-          Ver el álbum completo de jugadores →
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/directiva"
+            className="inline-block bg-cancha text-parchment-alto px-5 py-3 rounded-full font-mono text-sm uppercase tracking-wider hover:bg-cancha-oscuro transition-colors"
+          >
+            Ver el álbum completo de jugadores →
+          </Link>
+          <Link
+            href="/galeria"
+            className="inline-block border-2 border-cancha text-cancha px-5 py-3 rounded-full font-mono text-sm uppercase tracking-wider hover:bg-cancha hover:text-parchment-alto transition-colors"
+          >
+            Ver galería de fotos →
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -18,8 +18,8 @@ function iniciales(nombre: string) {
 
 export default function PlayerCard({ jugador }: { jugador: Player }) {
   return (
-    <div className="figurita p-3 flex flex-col items-center text-center">
-      <div className="w-full aspect-[4/5] bg-cancha rounded-2xl flex items-center justify-center relative overflow-hidden mb-2.5">
+    <div className="figurita p-1.5 flex flex-col items-center text-center">
+      <div className="w-full aspect-square bg-cancha rounded-xl flex items-center justify-center relative overflow-hidden mb-1.5">
         {jugador.foto ? (
           <Image
             src={jugador.foto}
@@ -28,15 +28,15 @@ export default function PlayerCard({ jugador }: { jugador: Player }) {
             className="object-cover"
           />
         ) : (
-          <span className="font-display text-5xl text-dorado">
+          <span className="font-display text-2xl text-dorado">
             {iniciales(jugador.nombre)}
           </span>
         )}
       </div>
-      <p className="font-display text-base tracking-wide leading-tight">
+      <p className="font-display text-xs tracking-wide leading-tight">
         {jugador.nombre}
       </p>
-      <p className="font-mono text-xs uppercase tracking-wider text-marcador mt-0.5">
+      <p className="font-mono text-[10px] uppercase tracking-wider text-marcador">
         {jugador.posicion}
       </p>
     </div>
