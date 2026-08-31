@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import FotoAdaptativa from "./FotoAdaptativa";
 
 type Foto = { imagen: string; leyenda: string };
 
@@ -42,12 +42,11 @@ export default function Carrusel({ fotos }: { fotos: Foto[] }) {
           className="carrusel-slide absolute inset-0"
           style={{ opacity: i === indice ? 1 : 0, pointerEvents: i === indice ? "auto" : "none" }}
         >
-          <Image
+          <FotoAdaptativa
             src={foto.imagen}
             alt={foto.leyenda || "Foto del club"}
-            fill
-            className="object-cover"
             priority={i === 0}
+            sizes="(min-width: 1280px) 1152px, 100vw"
           />
           {foto.leyenda && (
             <p className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white font-mono text-xs sm:text-sm px-4 py-4">
