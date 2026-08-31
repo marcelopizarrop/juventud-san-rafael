@@ -1,4 +1,4 @@
-import Image from "next/image";
+import FotoAdaptativa from "@/components/FotoAdaptativa";
 import { getClub, getSeries, getGaleriaGeneral, getGaleriaPorSerie } from "@/lib/datos";
 
 export function generateMetadata() {
@@ -18,8 +18,12 @@ function GridFotos({ fotos }: { fotos: { imagen: string; leyenda: string }[] }) 
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
       {fotos.map((f, i) => (
         <div key={i} className="figurita overflow-hidden">
-          <div className="relative w-full aspect-[4/3]">
-            <Image src={f.imagen} alt={f.leyenda || "Foto del club"} fill className="object-cover" />
+          <div className="relative w-full aspect-[4/3] bg-cancha-oscuro">
+            <FotoAdaptativa
+              src={f.imagen}
+              alt={f.leyenda || "Foto del club"}
+              sizes="(min-width: 768px) 25vw, 50vw"
+            />
           </div>
           {f.leyenda && (
             <p className="font-mono text-xs text-marcador px-3 py-2">{f.leyenda}</p>
