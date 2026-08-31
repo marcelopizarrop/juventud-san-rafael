@@ -50,13 +50,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CARRUSEL DE FOTOS */}
-      {galeria.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pt-10">
-          <Carrusel fotos={galeria} />
-        </section>
-      )}
-
       {/* PROXIMOS PARTIDOS */}
       <section className="max-w-6xl mx-auto px-4 py-14">
         <div className="flex items-baseline justify-between mb-6">
@@ -82,6 +75,13 @@ export default function Home() {
           </p>
         )}
       </section>
+
+      {/* CARRUSEL DE FOTOS */}
+      {galeria.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 pt-2 pb-10">
+          <Carrusel fotos={galeria} />
+        </section>
+      )}
 
       {/* NOVEDAD DESTACADA */}
       {proximaNovedad && (

@@ -28,7 +28,7 @@ export default function JugadoresPage() {
       <p className="font-mono uppercase tracking-[0.3em] text-azul text-xs mb-3">
         Quiénes lideran el club
       </p>
-      <h1 className="font-display text-4xl md:text-5xl text-cancha mb-10">
+      <h1 className="font-display text-3xl md:text-4xl text-cancha mb-10">
         Directiva
       </h1>
 

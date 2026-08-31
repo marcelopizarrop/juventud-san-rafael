@@ -33,9 +33,7 @@ function GridFotos({ fotos }: { fotos: { imagen: string; leyenda: string }[] }) 
 export default function GaleriaPage() {
   const generales = getGaleriaGeneral();
   const series = getSeries();
-  const seriesConFotos = series
-    .map((s) => ({ serie: s, fotos: getGaleriaPorSerie(s.id) }))
-    .filter((g) => g.fotos.length > 0);
+  const fotosPorSerie = series.map((s) => ({ serie: s, fotos: getGaleriaPorSerie(s.id) }));
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
@@ -51,10 +49,10 @@ export default function GaleriaPage() {
         <GridFotos fotos={generales} />
       </section>
 
-      {seriesConFotos.length > 0 && (
+      {fotosPorSerie.length > 0 && (
         <section className="space-y-12">
           <h2 className="font-display text-2xl text-cancha mb-2">Fotos por serie</h2>
-          {seriesConFotos.map(({ serie, fotos }) => (
+          {fotosPorSerie.map(({ serie, fotos }) => (
             <div key={serie.id}>
               <h3 className="font-mono text-xs uppercase tracking-wider text-marcador mb-3">
                 {serie.nombre}
