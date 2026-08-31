@@ -23,7 +23,7 @@ export default function SerieDetallePage({
   return (
     <div className="max-w-6xl mx-auto px-4 py-14">
       <a
-        href="/directiva"
+        href="/jugadores"
         className="font-mono text-xs uppercase tracking-wider text-azul hover:underline"
       >
         ← Todas las series
