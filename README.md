@@ -216,7 +216,6 @@ public/escudo/        → logo del club
 
 ## 9. Ideas para más adelante
 
-- Agregar Vercel Analytics para ver cuánta gente visita el sitio.
 - Verificar tu dominio en Resend para que los correos salgan desde
   `contacto@juventudsanrafael.cl` en vez de la dirección de prueba.
 - Sumar redes sociales del club en el pie de página.

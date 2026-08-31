@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Header nombreClub={club.nombre} />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
