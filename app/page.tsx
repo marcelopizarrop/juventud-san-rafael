@@ -1,19 +1,19 @@
 import Link from "next/link";
 import Escudo from "@/components/Escudo";
-import MatchCard from "@/components/MatchCard";
 import Carrusel from "@/components/Carrusel";
-import { getClub, getCalendario, getNovedades, getGaleriaGeneral } from "@/lib/datos";
+import ProximosPartidosHome from "@/components/ProximosPartidosHome";
+import { getClub, getCalendario, getNovedades, getGaleriaGeneral, getSeries } from "@/lib/datos";
 
 export default function Home() {
   const club = getClub();
   const calendario = getCalendario();
   const novedades = getNovedades();
   const galeria = getGaleriaGeneral();
+  const seriesOrden = getSeries().map((s) => s.nombre);
 
   const proximos = calendario
     .filter((p) => !p.resultado)
-    .sort((a, b) => a.fecha.localeCompare(b.fecha))
-    .slice(0, 3);
+    .sort((a, b) => a.fecha.localeCompare(b.fecha));
 
   const proximaNovedad = novedades
     .slice()
@@ -52,28 +52,11 @@ export default function Home() {
 
       {/* PROXIMOS PARTIDOS */}
       <section className="max-w-6xl mx-auto px-4 py-14">
-        <div className="flex items-baseline justify-between mb-6">
-          <h2 className="font-display text-2xl md:text-3xl text-cancha">
-            Próximos partidos
-          </h2>
-          <Link
-            href="/calendario"
-            className="font-mono text-xs uppercase tracking-wider text-azul hover:underline"
-          >
-            Ver calendario completo →
-          </Link>
-        </div>
-        {proximos.length > 0 ? (
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {proximos.map((p, i) => (
-              <MatchCard key={i} partido={p} nombreClub={club.nombre} />
-            ))}
-          </div>
-        ) : (
-          <p className="font-mono text-sm text-marcador">
-            Por el momento no hay partidos agendados.
-          </p>
-        )}
+        <ProximosPartidosHome
+          partidos={proximos}
+          seriesOrden={seriesOrden}
+          nombreClub={club.nombre}
+        />
       </section>
 
       {/* CARRUSEL DE FOTOS */}
