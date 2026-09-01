@@ -2,17 +2,20 @@ import fs from "fs";
 import path from "path";
 import * as XLSX from "xlsx";
 
-function leerLibro(nombreArchivo: string) {
-  const filePath = path.join(process.cwd(), "data", nombreArchivo);
+// Todo el contenido del sitio vive en un solo libro Excel, con una hoja
+// por tipo de dato (Club, Directiva, Series, Calendario, etc.). Esto es
+// justo lo que la sincronización automática con Google Sheets necesita
+// reemplazar en cada actualización: un único archivo.
+const ARCHIVO_DATOS = "datos.xlsx";
+
+function leerLibro() {
+  const filePath = path.join(process.cwd(), "data", ARCHIVO_DATOS);
   const buffer = fs.readFileSync(filePath);
   return XLSX.read(buffer, { type: "buffer", cellDates: false });
 }
 
-function leerHoja<T = Record<string, unknown>>(
-  nombreArchivo: string,
-  nombreHoja: string
-): T[] {
-  const libro = leerLibro(nombreArchivo);
+function leerHoja<T = Record<string, unknown>>(nombreHoja: string): T[] {
+  const libro = leerLibro();
   const hoja = libro.Sheets[nombreHoja];
   if (!hoja) return [];
   return XLSX.utils.sheet_to_json<T>(hoja, { defval: "", raw: true });
@@ -27,7 +30,7 @@ function numero(valor: unknown): number {
   return Number.isFinite(n) ? n : 0;
 }
 
-// ---------- club.xlsx ----------
+// ---------- hojas Club / Hitos ----------
 export type Hito = { anio: string; titulo: string; texto: string };
 export type RedesSociales = { instagram: string; facebook: string; whatsapp: string };
 export type Club = {
@@ -44,9 +47,9 @@ export type Club = {
 };
 
 export function getClub(): Club {
-  const filas = leerHoja<Record<string, unknown>>("club.xlsx", "Club");
+  const filas = leerHoja<Record<string, unknown>>("Club");
   const c = filas[0] ?? {};
-  const hitos = leerHoja<Record<string, unknown>>("club.xlsx", "Hitos");
+  const hitos = leerHoja<Record<string, unknown>>("Hitos");
   return {
     nombre: texto(c.nombre) || "Nombre del club",
     apodo: texto(c.apodo),
@@ -70,25 +73,25 @@ export function getClub(): Club {
   };
 }
 
-// ---------- directiva.xlsx ----------
+// ---------- hojas Directiva / Mascota ----------
 export type MiembroDirectiva = { cargo: string; nombre: string; foto: string };
 export type Mascota = { nombre: string; descripcion: string; imagen: string };
 
 export function getDirectiva(): MiembroDirectiva[] {
-  const filas = leerHoja<Record<string, unknown>>("directiva.xlsx", "Directiva");
+  const filas = leerHoja<Record<string, unknown>>("Directiva");
   return filas
     .filter((f) => texto(f.nombre))
     .map((f) => ({ cargo: texto(f.cargo), nombre: texto(f.nombre), foto: texto(f.foto) }));
 }
 
 export function getMascota(): Mascota | null {
-  const filas = leerHoja<Record<string, unknown>>("directiva.xlsx", "Mascota");
+  const filas = leerHoja<Record<string, unknown>>("Mascota");
   const m = filas[0];
   if (!m || !texto(m.nombre)) return null;
   return { nombre: texto(m.nombre), descripcion: texto(m.descripcion), imagen: texto(m.imagen) };
 }
 
-// ---------- series.xlsx ----------
+// ---------- hojas Series / Jugadores ----------
 export type Jugador = {
   numero: number;
   nombre: string;
@@ -105,8 +108,8 @@ export type Serie = {
 };
 
 export function getSeries(): Serie[] {
-  const series = leerHoja<Record<string, unknown>>("series.xlsx", "Series");
-  const jugadores = leerHoja<Record<string, unknown>>("series.xlsx", "Jugadores");
+  const series = leerHoja<Record<string, unknown>>("Series");
+  const jugadores = leerHoja<Record<string, unknown>>("Jugadores");
   return series.map((s) => {
     const id = texto(s.id);
     return {
@@ -131,7 +134,7 @@ export function getSerie(id: string): Serie | undefined {
   return getSeries().find((s) => s.id === id);
 }
 
-// ---------- tabla.xlsx ----------
+// ---------- hoja Tabla ----------
 export type EquipoTabla = {
   pos: number;
   equipo: string;
@@ -146,7 +149,7 @@ export type EquipoTabla = {
 export type Tabla = { liga: string; actualizado: string; equipos: EquipoTabla[] };
 
 export function getTablas(): Record<string, Tabla> {
-  const filas = leerHoja<Record<string, unknown>>("tabla.xlsx", "Tabla");
+  const filas = leerHoja<Record<string, unknown>>("Tabla");
   const agrupado: Record<string, Tabla> = {};
   filas.forEach((f) => {
     const serieId = texto(f.serieId);
@@ -170,7 +173,7 @@ export function getTablas(): Record<string, Tabla> {
   return agrupado;
 }
 
-// ---------- calendario.xlsx ----------
+// ---------- hoja Calendario ----------
 export type Partido = {
   fecha: string;
   hora: string;
@@ -182,7 +185,7 @@ export type Partido = {
 };
 
 export function getCalendario(): Partido[] {
-  const filas = leerHoja<Record<string, unknown>>("calendario.xlsx", "Calendario");
+  const filas = leerHoja<Record<string, unknown>>("Calendario");
   return filas
     .filter((f) => texto(f.fecha))
     .map((f) => ({
@@ -196,7 +199,7 @@ export function getCalendario(): Partido[] {
     }));
 }
 
-// ---------- novedades.xlsx ----------
+// ---------- hoja Novedades ----------
 export type Novedad = {
   titulo: string;
   fecha: string;
@@ -206,7 +209,7 @@ export type Novedad = {
 };
 
 export function getNovedades(): Novedad[] {
-  const filas = leerHoja<Record<string, unknown>>("novedades.xlsx", "Novedades");
+  const filas = leerHoja<Record<string, unknown>>("Novedades");
   return filas
     .filter((f) => texto(f.titulo))
     .map((f) => ({
@@ -218,11 +221,11 @@ export function getNovedades(): Novedad[] {
     }));
 }
 
-// ---------- galeria.xlsx ----------
+// ---------- hoja Galeria ----------
 export type FotoGaleria = { orden: number; imagen: string; leyenda: string; serie: string };
 
 export function getGaleria(): FotoGaleria[] {
-  const filas = leerHoja<Record<string, unknown>>("galeria.xlsx", "Galeria");
+  const filas = leerHoja<Record<string, unknown>>("Galeria");
   return filas
     .filter((f) => texto(f.imagen))
     .map((f) => ({

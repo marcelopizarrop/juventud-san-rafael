@@ -74,74 +74,71 @@ push` genera una nueva publicación en 1-2 minutos. Si es la primera vez:
 
 ---
 
-## 5. Editar el contenido — ahora con Excel
+## 5. Editar el contenido — un solo Excel, varias pestañas
 
-Toda la información vive en archivos `.xlsx` dentro de `data/`. A
-diferencia de antes, **los Excel no se pueden editar directamente en la
-web de GitHub** (son archivos binarios, no de texto). El flujo es:
+Toda la información vive en **un único archivo**, `data/datos.xlsx`, con
+una pestaña (hoja) por tipo de contenido. A diferencia de un archivo de
+texto, **no se puede editar directamente en la web de GitHub** (es un
+archivo binario). El flujo es:
 
-1. Ve a `data/` en tu repositorio de GitHub y descarga el archivo que
-   quieras cambiar (⋯ → **Download**).
-2. Ábrelo con Excel, Google Sheets o LibreOffice y edita las filas.
-   **No cambies los nombres de las columnas** (primera fila) ni el nombre
-   de las hojas (pestañas abajo) — el sitio los usa para leer los datos.
-3. Guarda el archivo **en formato .xlsx**, con el mismo nombre.
-4. En GitHub, entra a `data/`, haz clic en el archivo antiguo → ⋯ →
-   **Delete file** (o directamente arrastra el nuevo archivo con **Add
-   file → Upload files**, que lo reemplaza si tiene el mismo nombre).
-5. Sube el archivo nuevo con **Add file → Upload files**, arrastrando el
-   `.xlsx` editado, y confirma el cambio ("Commit changes").
-6. Espera ~1 minuto: Vercel vuelve a publicar el sitio solo.
+1. Ve a `data/` en tu repositorio de GitHub y descarga `datos.xlsx`
+   (⋯ → **Download**).
+2. Ábrelo con Excel, Google Sheets o LibreOffice y edita las filas de la
+   pestaña que corresponda. **No cambies los nombres de las columnas**
+   (primera fila) ni el nombre de las pestañas — el sitio los usa para
+   leer los datos.
+3. Guarda el archivo **en formato .xlsx**, con el mismo nombre
+   (`datos.xlsx`).
+4. En GitHub, entra a `data/`, arrastra el archivo editado con **Add
+   file → Upload files** (reemplaza al anterior porque tiene el mismo
+   nombre) y confirma el cambio ("Commit changes").
+5. Espera ~1 minuto: Vercel vuelve a publicar el sitio solo.
 
-> Tip: si administras el sitio en equipo, es más simple mantener estos
-> Excel en una carpeta de Google Drive/Sheets compartida y, cada vez que
-> haya cambios, descargar como `.xlsx` y subirlos a GitHub siguiendo los
-> pasos de arriba.
+> ¿Quieres que un tercero mantenga el contenido actualizado sin tocar
+> GitHub, editando en Google Sheets y subiendo fotos a Google Drive? Ve
+> a [`AUTOMATIZACION.md`](AUTOMATIZACION.md) — deja todo sincronizándose
+> solo.
 
-### ¿Qué hay en cada archivo?
+### ¿Qué hay en cada pestaña de `datos.xlsx`?
 
-- **`data/club.xlsx`**
-  - Hoja **Club**: una sola fila con nombre, apodo, año de fundación,
-    comuna, región, colores (separados por coma), estadio y resumen.
-  - Hoja **Hitos**: una fila por hito de la historia (año, título, texto).
+- **Club**: una sola fila con nombre, apodo, año de fundación, comuna,
+  región, colores (separados por coma), estadio y resumen.
+- **Hitos**: una fila por hito de la historia (año, título, texto).
 
-- **`data/series.xlsx`**
-  - Hoja **Series**: una fila por categoría (id, nombre, categoría,
-    entrenador, `fotoEquipo`). El `id` debe ser corto y sin espacios (ej.
-    `sub-15`). La columna `fotoEquipo` es opcional: pon ahí la ruta de una
-    foto del plantel completo (ej. `/jugadores/foto-equipo-sub-15.jpg`) y
-    aparecerá como foto de portada en la página de esa serie.
-  - Hoja **Jugadores**: una fila por jugador/a, con la columna `serieId`
-    indicando a qué serie pertenece (debe coincidir exactamente con el
-    `id` de la hoja Series). Columnas: `serieId`, `numero`, `nombre`,
-    `posicion`, `foto` (ver sección de imágenes más abajo).
+- **Series**: una fila por categoría (id, nombre, categoría, entrenador,
+  `fotoEquipo`). El `id` debe ser corto y sin espacios (ej. `sub-15`). La
+  columna `fotoEquipo` es opcional: pon ahí la ruta de una foto del
+  plantel completo (ej. `/jugadores/foto-equipo-sub-15.jpg`) y aparecerá
+  como foto de portada en la página de esa serie.
+- **Jugadores**: una fila por jugador/a, con la columna `serieId`
+  indicando a qué serie pertenece (debe coincidir exactamente con el
+  `id` de la pestaña Series). Columnas: `serieId`, `numero`, `nombre`,
+  `posicion`, `foto` (ver sección de imágenes más abajo).
 
-- **`data/tabla.xlsx`** — Hoja **Tabla**: una fila por equipo en cada
-  liga. La columna `serieId` agrupa las filas por serie (debe coincidir
-  con el `id` de `series.xlsx` para que aparezca con ese nombre en el
-  selector). Columnas: `pj, pg, pe, pp, gf, gc, pts`.
+- **Tabla**: una fila por equipo en cada liga. La columna `serieId`
+  agrupa las filas por serie (debe coincidir con el `id` de Series para
+  que aparezca con ese nombre en el selector). Columnas:
+  `pj, pg, pe, pp, gf, gc, pts`.
 
-- **`data/calendario.xlsx`** — Hoja **Calendario**: una fila por partido.
-  Si ya se jugó, escribe el resultado en `resultado` (ej. `2 - 1`); si no,
-  déjalo vacío y aparecerá en "Próximos partidos".
+- **Calendario**: una fila por partido. Si ya se jugó, escribe el
+  resultado en `resultado` (ej. `2 - 1`); si no, déjalo vacío y
+  aparecerá en "Próximos partidos".
 
-- **`data/novedades.xlsx`** — Hoja **Novedades**: matrículas, aniversarios,
-  actividades a beneficio, charlas, etc. Columnas: `titulo`, `fecha`,
-  `lugar`, `descripcion`, `imagen` (opcional, ver abajo).
+- **Novedades**: matrículas, aniversarios, actividades a beneficio,
+  charlas, etc. Columnas: `titulo`, `fecha`, `lugar`, `descripcion`,
+  `imagen` (opcional, ver abajo).
 
-- **`data/galeria.xlsx`** — Hoja **Galeria**: fotos del carrusel de la
-  portada y de la página Galería. Columnas: `orden` (número, define el
-  orden de aparición), `imagen`, `leyenda` (texto opcional que aparece
-  sobre la foto), `serie` (opcional). Si dejas `serie` vacío, la foto
-  aparece en "Fotos del club" y en el carrusel de la portada; si escribes
-  el `id` de una serie (el mismo de `series.xlsx`), la foto aparece en la
-  sección "Fotos por serie" de esa serie dentro de la página Galería.
+- **Galeria**: fotos del carrusel de la portada y de la página Galería.
+  Columnas: `orden` (número, define el orden de aparición), `imagen`,
+  `leyenda` (texto opcional que aparece sobre la foto), `serie`
+  (opcional). Si dejas `serie` vacío, la foto aparece en "Fotos del
+  club" y en el carrusel de la portada; si escribes el `id` de una serie
+  (el mismo de la pestaña Series), la foto aparece en la sección "Fotos
+  por serie" de esa serie dentro de la página Galería.
 
-- **`data/directiva.xlsx`**
-  - Hoja **Directiva**: una fila por integrante (cargo, nombre, `foto`
-    opcional).
-  - Hoja **Mascota**: una sola fila (nombre, descripción, `imagen`
-    opcional).
+- **Directiva**: una fila por integrante (cargo, nombre, `foto`
+  opcional).
+- **Mascota**: una sola fila (nombre, descripción, `imagen` opcional).
 
 ### Subir fotos (jugadores, directiva, mascota, novedades y galería)
 
@@ -223,8 +220,9 @@ Abre [http://localhost:3000](http://localhost:3000).
 app/                  → páginas del sitio (Inicio, Historia, Jugadores, Series, Tabla, Calendario, Novedades, Galería, Contacto)
 app/api/contacto/     → endpoint que envía el correo del formulario de contacto
 components/           → piezas reutilizables (encabezado, carrusel, ficha de jugador, tarjeta de partido, etc.)
-data/                 → TODO el contenido editable, en archivos Excel (.xlsx)
-lib/datos.ts          → lee los archivos Excel y se los entrega a cada página
+data/datos.xlsx       → TODO el contenido editable, en un solo Excel con varias pestañas
+lib/datos.ts          → lee data/datos.xlsx y se lo entrega a cada página
+automatizacion/       → script opcional de sincronización automática (ver AUTOMATIZACION.md)
 public/jugadores/     → fotos de jugadores y fotos de equipo completo por serie
 public/directiva/     → fotos de los integrantes de la directiva
 public/mascota/       → foto de la mascota
