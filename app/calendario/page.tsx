@@ -1,5 +1,5 @@
-import MatchCard from "@/components/MatchCard";
-import { getClub, getCalendario } from "@/lib/datos";
+import CalendarioSection from "@/components/CalendarioSection";
+import { getClub, getCalendario, getSeries } from "@/lib/datos";
 
 export function generateMetadata() {
   const club = getClub();
@@ -9,12 +9,7 @@ export function generateMetadata() {
 export default function CalendarioPage() {
   const club = getClub();
   const calendario = getCalendario();
-  const proximos = calendario
-    .filter((p) => !p.resultado)
-    .sort((a, b) => a.fecha.localeCompare(b.fecha));
-  const jugados = calendario
-    .filter((p) => p.resultado)
-    .sort((a, b) => b.fecha.localeCompare(a.fecha));
+  const seriesOrden = getSeries().map((s) => s.nombre);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-14">
@@ -25,33 +20,11 @@ export default function CalendarioPage() {
         Calendario
       </h1>
 
-      <section className="mb-14">
-        <h2 className="font-display text-2xl text-cancha mb-5">
-          Próximos partidos
-        </h2>
-        {proximos.length > 0 ? (
-          <div className="grid md:grid-cols-2 gap-6">
-            {proximos.map((p, i) => (
-              <MatchCard key={i} partido={p} nombreClub={club.nombre} />
-            ))}
-          </div>
-        ) : (
-          <p className="font-mono text-sm text-marcador">
-            No hay partidos agendados por el momento.
-          </p>
-        )}
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-cancha mb-5">
-          Resultados recientes
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {jugados.map((p, i) => (
-            <MatchCard key={i} partido={p} nombreClub={club.nombre} />
-          ))}
-        </div>
-      </section>
+      <CalendarioSection
+        calendario={calendario}
+        seriesOrden={seriesOrden}
+        nombreClub={club.nombre}
+      />
     </div>
   );
 }
