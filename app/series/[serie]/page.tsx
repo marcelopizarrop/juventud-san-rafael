@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PlayerCard from "@/components/PlayerCard";
+import JugadoresGrid from "@/components/JugadoresGrid";
 import { getClub, getSeries, getSerie } from "@/lib/datos";
 
 export function generateStaticParams() {
@@ -51,11 +51,7 @@ export default function SerieDetallePage({
         </div>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {serie.jugadores.map((j) => (
-          <PlayerCard key={j.numero} jugador={j} />
-        ))}
-      </div>
+      <JugadoresGrid jugadores={serie.jugadores} />
     </div>
   );
 }
