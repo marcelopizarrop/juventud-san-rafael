@@ -115,9 +115,7 @@ function sincronizar() {
 
 function revisarDatos_(props) {
   var idPlanilla = obtenerIdPlanilla_(props);
-  var archivo = DriveApp.getFileById(idPlanilla);
-  var blob = archivo.getAs(MimeType.MICROSOFT_EXCEL);
-  var bytes = blob.getBytes();
+  var bytes = exportarPlanillaComoXlsx_(idPlanilla);
   var hash = Utilities.base64Encode(
     Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, bytes)
   );
@@ -132,6 +130,28 @@ function revisarDatos_(props) {
       props.setProperty("HASH_DATOS", hash);
     }
   };
+}
+
+// DriveApp.getFileById(id).getAs(MimeType.MICROSOFT_EXCEL) NO funciona
+// para convertir una Hoja de cálculo nativa de Google a .xlsx (Apps
+// Script lo rechaza con "Converting from application/vnd.google-apps.
+// spreadsheet ... is not supported"), así que se exporta directamente
+// por la URL de exportación de Google Sheets.
+function exportarPlanillaComoXlsx_(idPlanilla) {
+  var url =
+    "https://docs.google.com/spreadsheets/d/" + idPlanilla + "/export?format=xlsx";
+  var respuesta = UrlFetchApp.fetch(url, {
+    headers: { Authorization: "Bearer " + ScriptApp.getOAuthToken() },
+    muteHttpExceptions: true
+  });
+  var codigo = respuesta.getResponseCode();
+  if (codigo !== 200) {
+    throw new Error(
+      "No se pudo exportar la planilla como .xlsx (código " + codigo + "): " +
+        respuesta.getContentText()
+    );
+  }
+  return respuesta.getContent();
 }
 
 function obtenerIdPlanilla_(props) {
