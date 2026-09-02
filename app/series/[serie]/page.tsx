@@ -1,4 +1,4 @@
-import Image from "next/image";
+import FotoEquipo from "@/components/FotoEquipo";
 import JugadoresGrid from "@/components/JugadoresGrid";
 import { getClub, getSeries, getSerie } from "@/lib/datos";
 
@@ -39,16 +39,7 @@ export default function SerieDetallePage({
       </div>
 
       {serie.fotoEquipo && (
-        <div className="figurita overflow-hidden mb-10">
-          <div className="relative w-full aspect-[16/7]">
-            <Image
-              src={serie.fotoEquipo}
-              alt={`Equipo ${serie.nombre}`}
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
+        <FotoEquipo src={serie.fotoEquipo} alt={`Equipo ${serie.nombre}`} />
       )}
 
       <JugadoresGrid jugadores={serie.jugadores} />
