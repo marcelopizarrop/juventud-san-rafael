@@ -140,7 +140,14 @@ archivo binario). El flujo es:
   opcional).
 - **Mascota**: una sola fila (nombre, descripción, `imagen` opcional).
 
-### Subir fotos (jugadores, directiva, mascota, novedades y galería)
+- **Auspiciadores**: una fila por auspiciador, para el banner que
+  aparece en la portada bajo el carrusel de fotos. Columnas: `orden`
+  (número, define el orden de aparición), `nombre` (para el texto
+  alternativo del logo), `imagen` (ver sección de imágenes más abajo),
+  `url` (opcional — si la escribes, el logo hace clic y abre esa
+  página en una pestaña nueva).
+
+### Subir fotos (jugadores, directiva, mascota, novedades, galería y auspiciadores)
 
 El proceso es el mismo en todos los casos:
 
@@ -153,13 +160,17 @@ El proceso es el mismo en todos los casos:
    - `public/novedades/` para la foto de una novedad
    - `public/galeria/` para las fotos del carrusel/galería (generales o
      por serie)
+   - `public/auspiciadores/` para los logos del banner de auspiciadores
 2. Sube la imagen (`.jpg`, `.jpeg`, `.png` o `.webp`; para el carrusel y
-   las fotos de equipo funciona mejor una foto horizontal/panorámica).
+   las fotos de equipo funciona mejor una foto horizontal/panorámica;
+   para los logos de auspiciadores, mejor un archivo con fondo blanco o
+   transparente).
 3. En el Excel correspondiente, en la columna `foto` / `imagen` /
    `fotoEquipo`, escribe la ruta con `/` al inicio, por ejemplo:
    `/jugadores/ignacio-rojas.jpg`, `/jugadores/foto-equipo-sub-15.jpg`,
    `/directiva/feliciciano-barra.jpg`, `/mascota/chocolo.jpg`,
-   `/novedades/aniversario-64.jpg`, `/galeria/hinchada.jpg`.
+   `/novedades/aniversario-64.jpg`, `/galeria/hinchada.jpg`,
+   `/auspiciadores/panaderia-el-trigal.png`.
 4. Sube el Excel actualizado como se explicó en la sección anterior.
 
 Mientras el campo de foto esté vacío, la ficha de jugador o de directiva
@@ -228,6 +239,7 @@ public/directiva/     → fotos de los integrantes de la directiva
 public/mascota/       → foto de la mascota
 public/novedades/     → fotos de novedades
 public/galeria/       → fotos del carrusel/galería (generales o por serie)
+public/auspiciadores/ → logos del banner de auspiciadores en la portada
 public/escudo/        → logo del club
 ```
 

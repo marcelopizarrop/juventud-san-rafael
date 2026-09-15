@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Escudo from "@/components/Escudo";
 import Carrusel from "@/components/Carrusel";
+import AuspiciadoresBanner from "@/components/AuspiciadoresBanner";
 import ProximosPartidosHome from "@/components/ProximosPartidosHome";
 import { getClub, getCalendario, getNovedades, getGaleriaGeneral, getSeries } from "@/lib/datos";
 
@@ -65,6 +66,9 @@ export default function Home() {
           <Carrusel fotos={galeria} />
         </section>
       )}
+
+      {/* AUSPICIADORES */}
+      <AuspiciadoresBanner />
 
       {/* NOVEDAD DESTACADA */}
       {proximaNovedad && (

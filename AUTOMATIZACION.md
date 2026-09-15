@@ -39,15 +39,17 @@ Google Drive (fotos)  ┘
    - Una **Hoja de cálculo de Google** llamada `datos` (Archivo nuevo →
      Hoja de cálculo de Google — **no** subas el `.xlsx`, créala nueva
      para poder editarla en línea).
-   - Cinco carpetas: `jugadores`, `directiva`, `mascota`, `novedades`,
-     `galeria` (mismos nombres que las carpetas `public/` del sitio).
+   - Seis carpetas: `jugadores`, `directiva`, `mascota`, `novedades`,
+     `galeria`, `auspiciadores` (mismos nombres que las carpetas
+     `public/` del sitio).
 
 ### Preparar las pestañas de la planilla
 
 Descarga `data/datos.xlsx` desde el repositorio y ábrelo. Copia cada
 pestaña (Club, Hitos, Directiva, Mascota, Series, Jugadores, Tabla,
-Calendario, Novedades, Galeria) dentro de la nueva Hoja de cálculo de
-Google, **con el mismo nombre de pestaña y las mismas columnas en la
+Calendario, Novedades, Galeria, Auspiciadores) dentro de la nueva Hoja
+de cálculo de Google, **con el mismo nombre de pestaña y las mismas
+columnas en la
 primera fila** — el script exporta la planilla completa como `.xlsx` y
 el sitio la lee exactamente igual que hoy. Puedes hacerlo abriendo el
 `.xlsx` con Google Sheets (se abre como una vista previa) y usando
@@ -81,7 +83,7 @@ https://drive.google.com/drive/folders/1AbCdEfGhIjKlMnOpQrStUvWxYz
                                         └────────── este es el ID ────────┘
 ```
 
-Anota el ID de las 5 carpetas de fotos (el de la planilla no hace falta
+Anota el ID de las 6 carpetas de fotos (el de la planilla no hace falta
 si sigues el paso 4 tal cual, que vincula el script directamente a
 ella).
 
@@ -134,6 +136,7 @@ propiedad del script**. Agrega una por una:
 | `DRIVE_FOLDER_MASCOTA` | ID de la carpeta `mascota` |
 | `DRIVE_FOLDER_NOVEDADES` | ID de la carpeta `novedades` |
 | `DRIVE_FOLDER_GALERIA` | ID de la carpeta `galeria` |
+| `DRIVE_FOLDER_AUSPICIADORES` | ID de la carpeta `auspiciadores` |
 
 Estas propiedades **no quedan visibles en el código** ni se comparten
 con nadie que solo tenga acceso a la planilla — son parte del proyecto
@@ -166,9 +169,9 @@ desplegable y presiona **▶ Ejecutar**:
 Comparte con esa persona (con su cuenta de Google, como **Editor**):
 
 - La Hoja de cálculo `datos`.
-- Las 5 carpetas de fotos (`jugadores`, `directiva`, `mascota`,
-  `novedades`, `galeria`) — o directamente la carpeta contenedora
-  completa, que ya las incluye.
+- Las 6 carpetas de fotos (`jugadores`, `directiva`, `mascota`,
+  `novedades`, `galeria`, `auspiciadores`) — o directamente la carpeta
+  contenedora completa, que ya las incluye.
 
 **No compartas el proyecto de Apps Script** (no hace falta, y contiene
 el token de GitHub).
