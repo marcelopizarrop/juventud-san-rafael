@@ -244,3 +244,19 @@ export function getGaleriaGeneral(): FotoGaleria[] {
 export function getGaleriaPorSerie(serieId: string): FotoGaleria[] {
   return getGaleria().filter((f) => f.serie === serieId);
 }
+
+// ---------- hoja Auspiciadores ----------
+export type Auspiciador = { orden: number; nombre: string; imagen: string; url: string };
+
+export function getAuspiciadores(): Auspiciador[] {
+  const filas = leerHoja<Record<string, unknown>>("Auspiciadores");
+  return filas
+    .filter((f) => texto(f.imagen))
+    .map((f) => ({
+      orden: numero(f.orden),
+      nombre: texto(f.nombre),
+      imagen: texto(f.imagen),
+      url: texto(f.url)
+    }))
+    .sort((a, b) => a.orden - b.orden);
+}

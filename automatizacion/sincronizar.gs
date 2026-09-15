@@ -7,7 +7,8 @@
  *   1. Exporta la planilla de Google Sheets (que reemplaza a data/datos.xlsx)
  *      y, si cambió desde la última vez, la sube al repositorio.
  *   2. Revisa las carpetas de Google Drive que reemplazan a public/jugadores,
- *      public/directiva, public/mascota, public/novedades y public/galeria;
+ *      public/directiva, public/mascota, public/novedades, public/galeria y
+ *      public/auspiciadores;
  *      sube al repositorio las fotos nuevas o modificadas.
  *   3. Si hubo cambios, hace UN solo commit a la rama configurada de GitHub.
  *      Como el repo ya está conectado a Vercel, ese commit dispara solo un
@@ -40,6 +41,7 @@
 //   DRIVE_FOLDER_MASCOTA    ID de la carpeta de Drive → public/mascota
 //   DRIVE_FOLDER_NOVEDADES  ID de la carpeta de Drive → public/novedades
 //   DRIVE_FOLDER_GALERIA    ID de la carpeta de Drive → public/galeria
+//   DRIVE_FOLDER_AUSPICIADORES  ID de la carpeta de Drive → public/auspiciadores
 //
 // El ID de la planilla se obtiene solo si el script está "vinculado" a ella
 // (Extensiones → Apps Script desde dentro de la propia Hoja de cálculo),
@@ -54,7 +56,8 @@ var CARPETAS_IMAGENES = {
   directiva: "DRIVE_FOLDER_DIRECTIVA",
   mascota: "DRIVE_FOLDER_MASCOTA",
   novedades: "DRIVE_FOLDER_NOVEDADES",
-  galeria: "DRIVE_FOLDER_GALERIA"
+  galeria: "DRIVE_FOLDER_GALERIA",
+  auspiciadores: "DRIVE_FOLDER_AUSPICIADORES"
 };
 
 // ---------------------------------------------------------------------
