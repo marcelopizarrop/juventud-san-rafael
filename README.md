@@ -54,8 +54,8 @@ push` genera una nueva publicación en 1-2 minutos. Si es la primera vez:
 
 ## 4. Conectar tu dominio de NIC.cl
 
-1. En Vercel: **Settings → Domains**, escribe tu dominio (ej.
-   `juventudsanrafael.cl`) y agrega también `www.juventudsanrafael.cl`.
+1. En Vercel: **Settings → Domains**, escribe tu dominio (`jcu.cl`) y
+   agrega también `www.jcu.cl`.
 2. Vercel te mostrará los registros DNS a usar, normalmente:
    - Dominio raíz: registro **A** → `76.76.21.21`
    - `www`: registro **CNAME** → `cname.vercel-dns.com`
@@ -192,7 +192,7 @@ correo. Configúralo una sola vez:
    agrega:
    - `RESEND_API_KEY` → la clave que copiaste.
    - `CONTACTO_EMAIL` → el correo del club donde quieres recibir los
-     mensajes (ej. `contacto@juventudsanrafael.cl` o tu Gmail).
+     mensajes (ej. `contacto@jcu.cl` o tu Gmail).
 4. Haz clic en **Save** y luego en **Deployments → ⋯ → Redeploy** para que
    los cambios se apliquen.
 
@@ -204,7 +204,7 @@ configurado con "responder a" la dirección de quien escribió.
 > envían desde una dirección genérica de prueba (`onboarding@resend.dev`).
 > Esto funciona perfecto para recibir los mensajes; si más adelante quieres
 > que los correos salgan "desde" tu propio dominio, Resend permite verificar
-> `juventudsanrafael.cl` agregando un par de registros DNS adicionales.
+> `jcu.cl` agregando un par de registros DNS adicionales.
 
 ### Probarlo en tu computador
 
@@ -248,5 +248,5 @@ public/escudo/        → logo del club
 ## 9. Ideas para más adelante
 
 - Verificar tu dominio en Resend para que los correos salgan desde
-  `contacto@juventudsanrafael.cl` en vez de la dirección de prueba.
+  `contacto@jcu.cl` en vez de la dirección de prueba.
 - Sumar redes sociales del club en el pie de página.
