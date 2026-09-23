@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Escudo from "@/components/Escudo";
 import Carrusel from "@/components/Carrusel";
 import AuspiciadoresBanner from "@/components/AuspiciadoresBanner";
@@ -32,6 +33,19 @@ export default function Home() {
             <p className="max-w-xl text-parchment-alto/85 mb-3 text-xs sm:text-sm">
               {club.resumen}
             </p>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="relative inline-block w-8 h-8 rounded-full bg-parchment-alto shrink-0">
+                <Image
+                  src="/escudo/asociacion-santa-rosa-sur.jpg"
+                  alt="Asociación Santa Rosa Sur"
+                  fill
+                  className="object-contain rounded-full p-0.5"
+                />
+              </span>
+              <p className="text-parchment-alto/85 text-[11px] sm:text-xs font-mono uppercase tracking-wider">
+                Club afiliado a la Asociación Santa Rosa Sur
+              </p>
+            </div>
             <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-wider">
               <Link
                 href="/jugadores"
