@@ -51,12 +51,12 @@ export default function Home() {
           <div className="flex flex-col items-center gap-2 justify-self-center">
             <div className="flex items-center gap-10">
               <Escudo className="w-20 h-24 md:w-24 md:h-28" />
-              <span className="relative inline-block w-20 h-24 md:w-24 md:h-28 rounded-card bg-parchment-alto shrink-0">
+              <span className="relative inline-block w-20 h-24 md:w-24 md:h-28 rounded-full shrink-0">
                 <Image
                   src="/escudo/asociacion-santa-rosa-sur.jpg"
                   alt="Asociación Santa Rosa Sur"
                   fill
-                  className="object-contain rounded-card"
+                  className="object-contain"
                 />
               </span>
             </div>
