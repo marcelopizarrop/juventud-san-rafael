@@ -23,11 +23,11 @@ export default function Header({ nombreClub }: { nombreClub: string }) {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="flex items-center gap-3 shrink-0"
+          className="flex items-center gap-3 min-w-0 md:shrink-0"
           onClick={() => setAbierto(false)}
         >
-          <Escudo className="w-11 h-11" />
-          <span className="font-display text-lg sm:text-xl md:text-2xl tracking-wide leading-none">
+          <Escudo className="w-11 h-11 shrink-0" />
+          <span className="font-display text-lg sm:text-xl md:text-2xl tracking-wide leading-none truncate">
             {nombreClub}
           </span>
         </Link>
@@ -50,20 +50,20 @@ export default function Header({ nombreClub }: { nombreClub: string }) {
           onClick={() => setAbierto((v) => !v)}
           aria-label="Abrir menú"
           aria-expanded={abierto}
-          className="md:hidden w-10 h-10 rounded-full flex flex-col items-center justify-center gap-1.5 border border-dorado/60"
+          className="md:hidden w-14 h-10 shrink-0 rounded-full flex flex-col items-center justify-center gap-1.5 border border-dorado/60"
         >
           <span
-            className={`block w-5 h-0.5 bg-parchment-alto transition-transform ${
+            className={`block w-6 h-0.5 bg-parchment-alto transition-transform ${
               abierto ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-parchment-alto transition-opacity ${
+            className={`block w-6 h-0.5 bg-parchment-alto transition-opacity ${
               abierto ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-parchment-alto transition-transform ${
+            className={`block w-6 h-0.5 bg-parchment-alto transition-transform ${
               abierto ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
