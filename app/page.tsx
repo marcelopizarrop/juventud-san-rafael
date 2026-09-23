@@ -49,7 +49,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-2 justify-self-center">
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-6 md:gap-10">
               <Escudo className="w-20 h-24 md:w-24 md:h-28" />
               <span className="relative inline-block w-20 h-24 md:w-24 md:h-28 rounded-full shrink-0">
                 <Image
