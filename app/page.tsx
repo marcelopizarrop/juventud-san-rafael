@@ -30,22 +30,9 @@ export default function Home() {
             <h1 className="font-display text-xl sm:text-2xl md:text-3xl leading-tight mb-2">
               {club.nombre}
             </h1>
-            <p className="max-w-xl text-parchment-alto/85 mb-3 text-xs sm:text-sm">
+            <p className="max-w-xl text-parchment-alto/85 mb-4 text-xs sm:text-sm">
               {club.resumen}
             </p>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="relative inline-block w-8 h-8 rounded-full bg-parchment-alto shrink-0">
-                <Image
-                  src="/escudo/asociacion-santa-rosa-sur.jpg"
-                  alt="Asociación Santa Rosa Sur"
-                  fill
-                  className="object-contain rounded-full p-0.5"
-                />
-              </span>
-              <p className="text-parchment-alto/85 text-[11px] sm:text-xs font-mono uppercase tracking-wider">
-                Club afiliado a la Asociación Santa Rosa Sur
-              </p>
-            </div>
             <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-wider">
               <Link
                 href="/jugadores"
@@ -61,7 +48,22 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <Escudo className="w-16 h-20 md:w-20 md:h-24 justify-self-center" />
+          <div className="flex flex-col items-center gap-2 justify-self-center">
+            <div className="flex items-center gap-3">
+              <Escudo className="w-16 h-20 md:w-20 md:h-24" />
+              <span className="relative inline-block w-16 h-16 md:w-20 md:h-20 rounded-full bg-parchment-alto shrink-0">
+                <Image
+                  src="/escudo/asociacion-santa-rosa-sur.jpg"
+                  alt="Asociación Santa Rosa Sur"
+                  fill
+                  className="object-contain rounded-full p-1"
+                />
+              </span>
+            </div>
+            <p className="text-parchment-alto/70 text-[10px] font-mono uppercase tracking-wider text-center max-w-[180px]">
+              Club afiliado a la Asociación Santa Rosa Sur
+            </p>
+          </div>
         </div>
       </section>
 
