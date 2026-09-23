@@ -56,7 +56,7 @@ export default function Home() {
                   src="/escudo/asociacion-santa-rosa-sur.jpg"
                   alt="Asociación Santa Rosa Sur"
                   fill
-                  className="object-contain rounded-card p-2"
+                  className="object-contain rounded-card"
                 />
               </span>
             </div>
