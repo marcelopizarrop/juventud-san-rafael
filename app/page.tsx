@@ -26,14 +26,14 @@ export default function Home() {
       {/* HERO */}
       <section className="bg-cancha text-parchment-alto relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 py-6 md:py-8 grid md:grid-cols-[1fr_auto] gap-4 md:gap-6 items-center">
-          <div>
+          <div className="text-center md:text-left">
             <h1 className="font-display text-xl sm:text-2xl md:text-3xl leading-tight mb-2">
               {club.nombre}
             </h1>
-            <p className="max-w-xl text-parchment-alto/85 mb-4 text-xs sm:text-sm">
+            <p className="max-w-xl mx-auto md:mx-0 text-parchment-alto/85 mb-4 text-xs sm:text-sm">
               {club.resumen}
             </p>
-            <div className="flex flex-wrap gap-3 font-mono text-[11px] uppercase tracking-wider">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 font-mono text-[11px] uppercase tracking-wider">
               <Link
                 href="/jugadores"
                 className="bg-dorado text-cancha-oscuro px-4 py-2 rounded-full font-bold hover:bg-dorado-claro transition-colors"
