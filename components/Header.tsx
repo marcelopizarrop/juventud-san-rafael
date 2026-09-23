@@ -20,14 +20,14 @@ export default function Header({ nombreClub }: { nombreClub: string }) {
 
   return (
     <header className="sticky top-0 z-40 bg-cancha text-parchment-alto border-b-4 border-dorado">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-2 md:gap-4">
         <Link
           href="/"
           className="flex items-center gap-3 min-w-0 md:shrink-0"
           onClick={() => setAbierto(false)}
         >
           <Escudo className="w-11 h-11 shrink-0" />
-          <span className="font-display text-lg sm:text-xl md:text-2xl tracking-wide leading-none truncate">
+          <span className="font-display text-sm sm:text-xl md:text-2xl tracking-wide leading-none truncate">
             {nombreClub}
           </span>
         </Link>
