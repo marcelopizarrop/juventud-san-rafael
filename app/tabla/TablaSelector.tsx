@@ -28,21 +28,18 @@ export default function TablaSelector({
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs uppercase tracking-wider">
+      <select
+        value={activa}
+        onChange={(e) => setActiva(e.target.value)}
+        aria-label="Filtrar por serie y liga"
+        className="font-mono text-xs uppercase tracking-wider border border-marcador/30 rounded-full px-4 py-2 mb-6 bg-white text-tinta cursor-pointer focus:outline-none focus:ring-2 focus:ring-azul"
+      >
         {opciones.map((op) => (
-          <button
-            key={op}
-            onClick={() => setActiva(op)}
-            className={`px-4 py-2 rounded-full border-2 border-cancha transition-colors ${
-              activa === op
-                ? "bg-cancha text-parchment-alto"
-                : "bg-transparent text-cancha hover:bg-cancha/10"
-            }`}
-          >
+          <option key={op} value={op}>
             {etiquetas[op] ?? op}
-          </button>
+          </option>
         ))}
-      </div>
+      </select>
 
       <p className="font-mono text-sm text-marcador mb-1">{tabla.liga}</p>
       <p className="font-mono text-xs text-marcador mb-4">
