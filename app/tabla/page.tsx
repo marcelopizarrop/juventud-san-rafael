@@ -11,8 +11,9 @@ export default function TablaPage() {
   const tablas = getTablas();
   const series = getSeries();
   const etiquetas: Record<string, string> = {};
-  Object.keys(tablas).forEach((id) => {
-    etiquetas[id] = series.find((s) => s.id === id)?.nombre ?? id;
+  Object.entries(tablas).forEach(([clave, tabla]) => {
+    const nombreSerie = series.find((s) => s.id === tabla.serieId)?.nombre ?? tabla.serieId;
+    etiquetas[clave] = tabla.liga ? `${nombreSerie} · ${tabla.liga}` : nombreSerie;
   });
 
   return (
