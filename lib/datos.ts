@@ -146,7 +146,7 @@ export type EquipoTabla = {
   gc: number;
   pts: number;
 };
-export type Tabla = { liga: string; actualizado: string; equipos: EquipoTabla[] };
+export type Tabla = { serieId: string; liga: string; actualizado: string; equipos: EquipoTabla[] };
 
 export function getTablas(): Record<string, Tabla> {
   const filas = leerHoja<Record<string, unknown>>("Tabla");
@@ -154,10 +154,15 @@ export function getTablas(): Record<string, Tabla> {
   filas.forEach((f) => {
     const serieId = texto(f.serieId);
     if (!serieId) return;
-    if (!agrupado[serieId]) {
-      agrupado[serieId] = { liga: texto(f.liga), actualizado: texto(f.actualizado), equipos: [] };
+    const liga = texto(f.liga);
+    // Una misma serie puede jugar en más de una liga a la vez (ej. liga
+    // comunal y un campeonato aparte), así que la clave agrupa por
+    // serie + liga para no mezclar los equipos de competencias distintas.
+    const clave = `${serieId}::${liga}`;
+    if (!agrupado[clave]) {
+      agrupado[clave] = { serieId, liga, actualizado: texto(f.actualizado), equipos: [] };
     }
-    agrupado[serieId].equipos.push({
+    agrupado[clave].equipos.push({
       pos: numero(f.pos),
       equipo: texto(f.equipo),
       pj: numero(f.pj),
