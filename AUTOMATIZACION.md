@@ -229,3 +229,33 @@ el token de GitHub).
 - **Desinstalar del todo**: borra el disparador, y opcionalmente
   revoca el token de GitHub (paso 3) y borra el proyecto de Apps
   Script.
+
+---
+
+## Traspasar la administración a otra cuenta de Google
+
+El proyecto de Apps Script (donde vive el token de GitHub y el
+disparador de cada 15 minutos) queda ligado a la cuenta de Google que
+lo instaló. Si otra persona va a quedar a cargo, hay que traspasarlo a
+mano — no es un cambio de código, es configuración de Google:
+
+1. **Traspasa la propiedad de la Hoja de cálculo**: ábrela con la
+   cuenta actual → **Compartir** → agrega el correo de la cuenta nueva
+   → cambia su rol a **Propietario**. Entra con la cuenta nueva y
+   confirma que aparece como dueña.
+2. **Comparte también las 6 carpetas de fotos** (`jugadores`,
+   `directiva`, `mascota`, `novedades`, `galeria`, `auspiciadores`) con
+   la cuenta nueva como Editor, como mínimo.
+3. **Reconfigura el proyecto de Apps Script desde la cuenta nueva**:
+   abre la Hoja con esa cuenta → **Extensiones → Apps Script** →
+   verifica que las Propiedades del script (`GITHUB_TOKEN`,
+   `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_RAMA`, `ADMIN_EMAIL`,
+   `DRIVE_FOLDER_*`) sigan ahí. El token de GitHub no depende de la
+   cuenta de Google, así que es el mismo valor.
+4. Ejecuta `probarConexionGithub` y luego `configurarTrigger` **desde
+   la cuenta nueva** — el disparador queda corriendo a su nombre.
+5. **Apaga el disparador viejo**: con la cuenta antigua, en el mismo
+   proyecto de Apps Script → **Disparadores** → borra el que quedó a
+   su nombre, para que no corran dos sincronizaciones en paralelo.
+6. Actualiza `ADMIN_EMAIL` con el correo de quien deba recibir los
+   avisos de error de ahora en adelante.
