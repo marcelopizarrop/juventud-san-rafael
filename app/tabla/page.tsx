@@ -10,10 +10,9 @@ export default function TablaPage() {
   const club = getClub();
   const tablas = getTablas();
   const series = getSeries();
-  const etiquetas: Record<string, string> = {};
-  Object.entries(tablas).forEach(([clave, tabla]) => {
-    const nombreSerie = series.find((s) => s.id === tabla.serieId)?.nombre ?? tabla.serieId;
-    etiquetas[clave] = tabla.liga ? `${nombreSerie} · ${tabla.liga}` : nombreSerie;
+  const etiquetasSerie: Record<string, string> = {};
+  series.forEach((s) => {
+    etiquetasSerie[s.id] = s.nombre;
   });
 
   return (
@@ -24,7 +23,12 @@ export default function TablaPage() {
       <h1 className="font-display text-4xl md:text-5xl text-cancha mb-10">
         Tabla de posiciones
       </h1>
-      <TablaSelector tablas={tablas} etiquetas={etiquetas} nombreClub={club.nombre} />
+      <TablaSelector
+        tablas={tablas}
+        etiquetasSerie={etiquetasSerie}
+        ordenSeries={series.map((s) => s.id)}
+        nombreClub={club.nombre}
+      />
     </div>
   );
 }
