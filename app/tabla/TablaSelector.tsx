@@ -92,11 +92,6 @@ export default function TablaSelector({
           Todavía no hay tabla cargada para esta combinación.
         </p>
       )}
-
-      <p className="font-mono text-xs text-marcador mt-6">
-        Las categorías formativas participan en formato de encuentros y no
-        llevan tabla de posiciones oficial.
-      </p>
     </div>
   );
 }
