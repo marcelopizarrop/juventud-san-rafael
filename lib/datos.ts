@@ -32,7 +32,13 @@ function numero(valor: unknown): number {
 
 // ---------- hojas Club / Hitos ----------
 export type Hito = { anio: string; titulo: string; texto: string };
-export type RedesSociales = { instagram: string; facebook: string; whatsapp: string };
+export type RedesSociales = {
+  instagram: string;
+  facebook: string;
+  whatsapp: string;
+  tiktok: string;
+  youtube: string;
+};
 export type Club = {
   nombre: string;
   apodo: string;
@@ -68,7 +74,9 @@ export function getClub(): Club {
     redes: {
       instagram: texto(c.instagram),
       facebook: texto(c.facebook),
-      whatsapp: texto(c.whatsapp)
+      whatsapp: texto(c.whatsapp),
+      tiktok: texto(c.tiktok),
+      youtube: texto(c.youtube)
     }
   };
 }
@@ -144,6 +152,7 @@ export type EquipoTabla = {
   pp: number;
   gf: number;
   gc: number;
+  dif: number;
   pts: number;
 };
 export type Tabla = { serieId: string; liga: string; actualizado: string; equipos: EquipoTabla[] };
@@ -162,6 +171,8 @@ export function getTablas(): Record<string, Tabla> {
     if (!agrupado[clave]) {
       agrupado[clave] = { serieId, liga, actualizado: texto(f.actualizado), equipos: [] };
     }
+    const gf = numero(f.gf);
+    const gc = numero(f.gc);
     agrupado[clave].equipos.push({
       pos: numero(f.pos),
       equipo: texto(f.equipo),
@@ -169,8 +180,9 @@ export function getTablas(): Record<string, Tabla> {
       pg: numero(f.pg),
       pe: numero(f.pe),
       pp: numero(f.pp),
-      gf: numero(f.gf),
-      gc: numero(f.gc),
+      gf,
+      gc,
+      dif: gf - gc,
       pts: numero(f.pts)
     });
   });
@@ -183,6 +195,7 @@ export type Partido = {
   fecha: string;
   hora: string;
   serie: string;
+  liga: string;
   rival: string;
   condicion: string;
   cancha: string;
@@ -197,6 +210,7 @@ export function getCalendario(): Partido[] {
       fecha: texto(f.fecha),
       hora: texto(f.hora),
       serie: texto(f.serie),
+      liga: texto(f.liga),
       rival: texto(f.rival),
       condicion: texto(f.condicion),
       cancha: texto(f.cancha),

@@ -2,6 +2,7 @@ type Partido = {
   fecha: string;
   hora: string;
   serie: string;
+  liga?: string;
   rival: string;
   condicion: string;
   cancha: string;
@@ -29,7 +30,8 @@ export default function MatchCard({
     <div className="ticket px-5 py-4 flex items-center justify-between gap-4">
       <div>
         <p className="font-mono text-xs uppercase tracking-wider text-marcador">
-          {partido.serie} · {partido.condicion}
+          {partido.serie}
+          {partido.liga ? ` · ${partido.liga}` : ""} · {partido.condicion}
         </p>
         <p className="font-display text-lg leading-tight mt-1">
           {jugado ? `${nombreClub} vs` : "vs"} {partido.rival}

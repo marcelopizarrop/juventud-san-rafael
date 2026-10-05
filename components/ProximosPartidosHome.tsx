@@ -9,6 +9,7 @@ type Partido = {
   fecha: string;
   hora: string;
   serie: string;
+  liga?: string;
   rival: string;
   condicion: string;
   cancha: string;
