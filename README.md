@@ -102,7 +102,11 @@ archivo binario). El flujo es:
 ### ¿Qué hay en cada pestaña de `datos.xlsx`?
 
 - **Club**: una sola fila con nombre, apodo, año de fundación, comuna,
-  región, colores (separados por coma), estadio y resumen.
+  región, colores (separados por coma), estadio y resumen. También las
+  redes sociales: `instagram`, `facebook`, `whatsapp`, `tiktok`,
+  `youtube` — cada una es opcional y espera el link completo (ej.
+  `https://www.tiktok.com/@tu_club`); si una columna queda vacía, ese
+  ícono simplemente no aparece en el pie de página del sitio.
 - **Hitos**: una fila por hito de la historia (año, título, texto).
 
 - **Series**: una fila por categoría (id, nombre, categoría, entrenador,
@@ -116,12 +120,22 @@ archivo binario). El flujo es:
   `posicion`, `foto` (ver sección de imágenes más abajo).
 
 - **Tabla**: una fila por equipo en cada liga. La columna `serieId`
-  agrupa las filas por serie (debe coincidir con el `id` de Series para
-  que aparezca con ese nombre en el selector). Columnas:
-  `pj, pg, pe, pp, gf, gc, pts`.
+  agrupa las filas por serie (debe coincidir con el `id` de Series) y
+  `liga` identifica en qué liga o campeonato juega (si una misma serie
+  participa en más de una liga a la vez, repite el `serieId` con un
+  `liga` distinto en cada grupo de filas — el sitio las muestra como
+  tablas separadas). Columnas: `liga`, `actualizado` (fecha del último
+  partido considerado), `pos`, `equipo`, `pj, pg, pe, pp, gf, gc, pts`.
+  La diferencia de gol (`gf - gc`) se calcula sola, no hace falta
+  agregar esa columna.
 
-- **Calendario**: una fila por partido. Si ya se jugó, escribe el
-  resultado en `resultado` (ej. `2 - 1`); si no, déjalo vacío y
+- **Calendario**: una fila por partido. La columna `serie` es el
+  nombre de la serie tal como debe verse (ej. `Senior 35`, no el `id`
+  corto), y `liga` (opcional) identifica en qué liga o campeonato se
+  juega ese partido — útil cuando una serie participa en más de una
+  liga a la vez; el sitio agrega un filtro por liga en la página
+  Calendario cuando hay más de una. Si el partido ya se jugó, escribe
+  el resultado en `resultado` (ej. `2 - 1`); si no, déjalo vacío y
   aparecerá en "Próximos partidos".
 
 - **Novedades**: matrículas, aniversarios, actividades a beneficio,

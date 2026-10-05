@@ -7,6 +7,7 @@ type Equipo = {
   pp: number;
   gf: number;
   gc: number;
+  dif: number;
   pts: number;
 };
 
@@ -30,6 +31,7 @@ export default function StandingsTable({
             <th className="py-2 px-2">PP</th>
             <th className="py-2 px-2">GF</th>
             <th className="py-2 px-2">GC</th>
+            <th className="py-2 px-2">Dif</th>
             <th className="py-2 px-2">Pts</th>
           </tr>
         </thead>
@@ -53,6 +55,9 @@ export default function StandingsTable({
               <td className="py-2 px-2 text-center">{e.pp}</td>
               <td className="py-2 px-2 text-center">{e.gf}</td>
               <td className="py-2 px-2 text-center">{e.gc}</td>
+              <td className="py-2 px-2 text-center">
+                {e.dif > 0 ? `+${e.dif}` : e.dif}
+              </td>
               <td className="py-2 px-2 text-center">{e.pts}</td>
             </tr>
           ))}

@@ -8,6 +8,7 @@ type Partido = {
   fecha: string;
   hora: string;
   serie: string;
+  liga?: string;
   rival: string;
   condicion: string;
   cancha: string;
@@ -24,6 +25,7 @@ export default function CalendarioSection({
   nombreClub: string;
 }) {
   const [serie, setSerie] = useState("");
+  const [liga, setLiga] = useState("");
 
   const opciones = useMemo(() => {
     const presentes = new Set(calendario.map((p) => p.serie));
@@ -32,7 +34,14 @@ export default function CalendarioSection({
     return [...ordenadas, ...extra];
   }, [calendario, seriesOrden]);
 
-  const base = serie ? calendario.filter((p) => p.serie === serie) : calendario;
+  const opcionesLiga = useMemo(
+    () => Array.from(new Set(calendario.map((p) => p.liga).filter(Boolean))) as string[],
+    [calendario]
+  );
+
+  const base = calendario
+    .filter((p) => !serie || p.serie === serie)
+    .filter((p) => !liga || p.liga === liga);
   const proximos = base
     .filter((p) => !p.resultado)
     .sort((a, b) => a.fecha.localeCompare(b.fecha));
@@ -44,9 +53,18 @@ export default function CalendarioSection({
     <>
       <div className="flex items-center justify-between gap-3 mb-10 flex-wrap">
         <p className="font-mono text-xs uppercase tracking-wider text-marcador">
-          Filtrar por serie
+          Filtrar
         </p>
-        <FiltroSerie opciones={opciones} valor={serie} onChange={setSerie} />
+        <div className="flex items-center gap-3 flex-wrap">
+          <FiltroSerie
+            opciones={opcionesLiga}
+            valor={liga}
+            onChange={setLiga}
+            etiquetaTodas="Todas las ligas"
+            ariaLabel="Filtrar por liga"
+          />
+          <FiltroSerie opciones={opciones} valor={serie} onChange={setSerie} />
+        </div>
       </div>
 
       <section className="mb-14">
@@ -61,8 +79,8 @@ export default function CalendarioSection({
           </div>
         ) : (
           <p className="font-mono text-sm text-marcador">
-            {serie
-              ? "No hay partidos agendados para esta serie."
+            {serie || liga
+              ? "No hay partidos agendados para este filtro."
               : "No hay partidos agendados por el momento."}
           </p>
         )}
@@ -80,8 +98,8 @@ export default function CalendarioSection({
           </div>
         ) : (
           <p className="font-mono text-sm text-marcador">
-            {serie
-              ? "Todavía no hay resultados para esta serie."
+            {serie || liga
+              ? "Todavía no hay resultados para este filtro."
               : "Todavía no hay resultados cargados."}
           </p>
         )}
